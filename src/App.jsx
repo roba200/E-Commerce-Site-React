@@ -1,9 +1,13 @@
-import Header from "./components/header/header";
+import { useState } from 'react'
+
 
 function App() {
-  return <div className="App">
-    <Header></Header>
-  </div>;
+
+  return (
+    <>
+      <Header></Header>
+    </>
+  )
 }
 
 export default App;
