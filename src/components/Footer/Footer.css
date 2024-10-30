@@ -3,52 +3,70 @@
     margin: 0px;
     padding: 0px;
 }
-.h-wrapper{
-    padding-top: 20px;
+.f-wrapper{
+    
     font-family: "Poppins", sans-serif;
+    color: #fafafa;
 }
 
-.h-container{
-    height: 80px;
+.f-container{
+    padding-top: 100px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-around;
+    height: 440px;
+    background-color: black;
 }
 
-.h-menu a{
-    padding-left: 30px;
-    color: black;
-    text-decoration: none;
-}
-
-.line{
-    height: 1px;
-    background-color: gray;
-}
-
-.search-input {
+.email-input {
     position: relative;
-    background-color: #f8f6f6;
+    background-color: transparent;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 3px;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 20px;
     padding-right: 40px;
   }
   
-  .search-input input[type="text"] {
+  .email-input input[type="text"] {
     width: 100%; 
     border: none;
     outline: none;
     background-color: transparent;
   }
   
-  .search-input .magnifying-glass {
+  .email-input .send-btn {
     position: absolute;
     right: 10px;
-    top: 10px; 
+    top: 12px; 
     cursor: pointer;
   }
+  .footer-title{
+    font-size: 24px;
+  }
 
-  
+  .footer-ul li{
+    padding-top: 20px;
+  }
+
+  .footer-ul{
+    list-style: none;
+  }
+
+  .footer-subtitle{
+    font-size: 16px;
+  }
+
+  .footer-menu{
+    width: 200px;
+  }
+
+  table td{
+    padding: 3px;
+  }
+
+  .social-panel{
+    display: flex;
+    justify-content: space-between;
+  }
