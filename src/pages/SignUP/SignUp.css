@@ -1,0 +1,23 @@
+.button-side-signup{
+    display: inline;
+    
+}
+
+.signup-button{
+    padding-top: 40px;
+}
+
+.have-account-warpper{
+    display: flex;
+    justify-content: center;
+    color: rgb(169, 171, 172);
+    font-size: 16px;
+    padding-top: 10px;
+    display: flex;
+}
+
+.login{
+    padding-left: 10px;
+    color: black;
+    cursor: pointer;
+}

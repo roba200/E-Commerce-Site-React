@@ -7,6 +7,7 @@
 }
 
 .red-button{
+    width: 100%;
     border: none;
     outline: none;
     background-color: #DB4444;
