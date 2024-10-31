@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: "Poppins", sans-serif;
+}
+
+.login-container {
+  display: flex;
+  align-items: center;
+  padding-top: 50px;
+  padding-bottom: 100px;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 30px;
+  letter-spacing: 4%;
+  padding-bottom: 30px;
+}
+.sub-title {
+  font-size: 16px;
+  font-family: Poppins;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0%;
+}
+
+.login-form {
+  padding-left: 30px;
+  padding-right: 30px;
+  width: 400px;
+  height: max-content;
+}
+
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.login-form input {
+  padding-top: 60px;
+  width: 100%;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #988f8f;
+  background-color: transparent;
+}
+
+.button-side {
+  padding-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.forgot-password {
+  cursor: pointer;
+  font-size: 16px;
+  color: #db4444;
+  font-family: Poppins;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0%;
+}
