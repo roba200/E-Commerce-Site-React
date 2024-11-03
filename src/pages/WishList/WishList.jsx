@@ -4,6 +4,8 @@ import WhiteButton from "../../components/WhiteButton/WhiteButton";
 import "./WishList.css";
 import WishListItem from "../../components/WishListItem/WishListItem";
 import WishListItemReview from "../../components/WishListItemReview/WishListItemReview";
+import Footer from "../../components/Footer/Footer";
+
 
 function WishList() {
   return (
@@ -78,7 +80,7 @@ function WishList() {
           </div>
         </div>
 
-        <div className="px-[135px] pt-[135px]">
+        <div className="px-[135px] pt-[68px] pb-[140px]">
           <div className="flex overflow-y-scroll">
             <WishListItemReview
               discount="-29%"
@@ -86,11 +88,53 @@ function WishList() {
               nowPrice="$20"
               wasPrice="$50"
               image="./bag.png"
+              count= "65"
+            ></WishListItemReview>
+            <WishListItemReview
+              discount="-29%"
+              itemName="Gucci duffle bag"
+              nowPrice="$20"
+              wasPrice="$50"
+              image="./bag.png"
+              count= "65"
+            ></WishListItemReview>
+            <WishListItemReview
+              discount="-29%"
+              itemName="Gucci duffle bag"
+              nowPrice="$20"
+              wasPrice="$50"
+              image="./bag.png"
+              count= "65"
+            ></WishListItemReview>
+            <WishListItemReview
+              discount="-29%"
+              itemName="Gucci duffle bag"
+              nowPrice="$20"
+              wasPrice="$50"
+              image="./bag.png"
+              count= "65"
+            ></WishListItemReview>
+            <WishListItemReview
+              discount="-29%"
+              itemName="Gucci duffle bag"
+              nowPrice="$20"
+              wasPrice="$50"
+              image="./bag.png"
+              count= "65"
+            ></WishListItemReview>
+            <WishListItemReview
+              discount="-29%"
+              itemName="Gucci duffle bag"
+              nowPrice="$20"
+              wasPrice="$50"
+              image="./bag.png"
+              count= "65"
             ></WishListItemReview>
            
           </div>
         </div>
       </div>
+     <Footer></Footer>
     </div>
   );
 }

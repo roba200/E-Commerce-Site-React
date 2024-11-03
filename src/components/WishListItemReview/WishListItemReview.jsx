@@ -31,12 +31,16 @@ const WishListItemReview = ({
         <div className="text-[#DB4444] ">{nowPrice}</div>
         <div className="pl-4 text-[#d9d9d9] line-through">{wasPrice}</div>
       </div>
-      <div className="flex">
-        <img src="star.png" alt="" srcset="" />
-        <img src="star.png" alt="" srcset="" />
-        <img src="star.png" alt="" srcset="" />
-        <img src="star.png" alt="" srcset="" />
-        <img src="star.png" alt="" srcset="" />
+      <div className="flex items-center">
+        <img src="star.png" alt="" srcset="" className="pr-1"/>
+        <img src="star.png" alt="" srcset="" className="pr-1"/>
+        <img src="star.png" alt="" srcset="" className="pr-1"/>
+        <img src="star.png" alt="" srcset="" className="pr-1"/>
+        <img src="star.png" alt="" srcset="" className="pr-3"/>
+        <div>
+        ({count})
+        </div>
+        
       </div>
     </div>
   );
