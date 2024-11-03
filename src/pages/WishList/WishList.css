@@ -1,0 +1,6 @@
+.wish-list-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 80px 135px;
+}
