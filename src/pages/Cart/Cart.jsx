@@ -25,7 +25,7 @@ function Cart() {
                             <img src="../../public/Monitor-Cart-Small.png" alt="" />LCD monitor
                         </div>
                         <div className="price">$650</div>
-                        <div className="quantity"><input type="number" required default="1" /></div>
+                        <div className="quantity"><input type="number" placeholder="1" /></div>
                         <div className="subtotal">$650</div>
                     </div>
                     <div className="cartMain_row">
@@ -33,7 +33,7 @@ function Cart() {
                             <img src="../../public/Monitor-Cart-Small.png" alt="" />LCD monitor
                         </div>
                         <div className="price">$650</div>
-                        <div className="quantity"><input type="number" required default="1" /></div>
+                        <div className="quantity"><input type="number" placeholder="1" /></div>
                         <div className="subtotal">$650</div>
                     </div>
                     <div className="cartMain_row">
@@ -41,7 +41,7 @@ function Cart() {
                             <img src="../../public/Monitor-Cart-Small.png" alt="" />LCD monitor
                         </div>
                         <div className="price">$650</div>
-                        <div className="quantity"><input type="number" required default="1" /></div>
+                        <div className="quantity"><input type="number" placeholder="1" /></div>
                         <div className="subtotal">$650</div>
                     </div>
                 </div>
@@ -64,12 +64,29 @@ function Cart() {
                         </div>
                     </div>
                     <div className="toCheckout">
-                        <div>Cart Total</div>
+                        <p>Cart Total</p>
                         <div className="toCheckout-name">
                             Subtotal:
+                            <div className="toCheckout-price">
+                                $1750
+                            </div>
                         </div>
-                        <div className="toCheckout-price">
-                            $1750
+                        <hr />
+                        <div className="toCheckout-name">
+                            Shipping:
+                            <div className="toCheckout-price">
+                               Free
+                            </div>
+                        </div>
+                        <hr />
+                        <div className="toCheckout-name">
+                            Total:
+                            <div className="toCheckout-price">
+                                $1750
+                            </div>
+                        </div>
+                        <div className="checkout-process">
+                        <RedButton text="Process to checkout"></RedButton>
                         </div>
                     </div>
                 </div>
@@ -79,3 +96,4 @@ function Cart() {
     );
 }
 export default Cart;
+//gfgh
