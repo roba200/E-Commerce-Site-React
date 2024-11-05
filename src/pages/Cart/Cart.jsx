@@ -3,6 +3,7 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import "./Cart.css"
 import WhiteButton from "../../components/WhiteButton/WhiteButton"
+import RedButton from "../../components/RedButton/RedButton"
 
 function Cart() {
     return (
@@ -46,10 +47,30 @@ function Cart() {
                 </div>
                 <div className="item-button">
                     <div className="item-button-return">
-                       <WhiteButton text="Return To Shop"></WhiteButton>
+                        <WhiteButton text="Return To Shop"></WhiteButton>
                     </div>
                     <div className="item-button-update">
-                    <WhiteButton text="Update Cart"></WhiteButton>
+                        <WhiteButton text="Update Cart"></WhiteButton>
+                    </div>
+                </div>
+                <div className="cartMain_row"></div>
+                <div className="coupon-container">
+                    <div className="coupon">
+                        <div className="coupon-box">
+                            <input type="text" placeholder="Coupon Code"></input>
+                        </div>
+                        <div className="coupon-button">
+                            <RedButton text="Add Coupon"></RedButton>
+                        </div>
+                    </div>
+                    <div className="toCheckout">
+                        <div>Cart Total</div>
+                        <div className="toCheckout-name">
+                            Subtotal:
+                        </div>
+                        <div className="toCheckout-price">
+                            $1750
+                        </div>
                     </div>
                 </div>
             </div>
