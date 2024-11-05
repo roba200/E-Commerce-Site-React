@@ -3,7 +3,7 @@ import './RedButton.css'
 
 const Redbutton = ({text}) => {
   return (
-    <button type="button" className='red-button'>{text}</button>
+    <button type="submit" className='red-button'>{text}</button>
    
   );
 }
