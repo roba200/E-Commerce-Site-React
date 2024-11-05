@@ -1,0 +1,231 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.navigate-panel ul{
+    display: flex;
+    list-style: none;
+    padding: 70px;
+    margin: 10px;
+} 
+.navigate-panel li{
+    padding: 3px;
+    margin: 3px;
+}
+.navigate-panel li a{
+    text-decoration: none;
+
+}
+.navigate-panel li a:hover{
+    color: red;
+}
+.title h2{
+    font-size:30px;
+    padding-left: 85px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.billing-form{
+    display: flex;
+    flex-direction: column;
+    width: 470px;
+    color: black;
+    font-size: 16px;
+    
+}
+
+.wrapper{
+    display: flex;
+    justify-content: space-around;
+}
+
+.payment{
+    width: 527px;
+   
+   
+}
+
+.billing-form input{
+    height: 50px;
+    border: none;
+    outline: none;
+    background-color: #f5f5f5;
+    font-size: 16px;
+    margin-bottom: 20px;
+    
+}
+
+.billing-form span{
+    color:cadetblue;
+    font-size: 16px;
+}
+
+input[type="checkbox"]{
+    margin: 0px;
+}
+
+.li-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.payment-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 20px;
+
+
+}
+
+.payment-item-name{
+    padding-right: 30px;
+    padding-left: 30px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+.payment-itemsubtotal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 20px;
+
+
+}
+.payment-itemsubtotalprice{
+    padding-right: 30px;
+    padding-left: 380px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.payment-itemshop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    padding-top: 20px;
+
+
+}
+.payment-itemshopprice{
+    padding-right: 30px;
+    padding-left: 380px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.payment-itemtotal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    
+
+
+}
+.payment-itemtotalprice{
+    padding-right: 30px;
+    padding-left: 400px;
+    width: 100
+}
+.payment-method{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 20px;
+}
+.payment-methodname{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-left: 15px;
+    padding-bottom: 3px;
+    
+}
+.payment-card{
+    padding-right: 30px;
+    padding-left: 250px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.payment-cash{
+    display: flex;
+    align-items: center;
+    padding-bottom: 20px;
+}
+.payment-cn{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-left: 15px;
+    padding-bottom: 3px;
+
+}
+.code{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+}
+
+.coupon-code input{
+    width: 300px;
+    height: 56px;
+    border-radius: 4px;
+    border: 1px solid blacks;
+
+}
+.coupon-code input::placeholder{
+    width: 112px;
+    height: 24px;
+    padding-top: 16px;
+    padding-left: 24px;
+    opacity: 50%;
+    font-size: 16px;
+    font-weight: 400;
+    
+}
+.apply-code input:hover{
+    background-color:#DB4444;
+    color: #FAFAFA;
+    
+}
+.apply-code input{
+    width: 211px;
+    height: 60px;
+    border-radius: 4px;
+    padding-top: 16px;
+    padding-right: 48px;
+    padding-bottom: 16px;
+    padding-left: 10px;
+    gap: 10px;
+    transition: 0.5s;
+
+}
+.place-order input:hover{
+    background-color:#DB4444;
+    color: #FAFAFA;
+}
+.place-order input{
+    width: 211px;
+    height: 56px;
+    border-radius: 4px;
+    padding-top: 16px;
+    padding-right: 48px;
+    padding-bottom: 16px;
+    padding-left: 10px;
+    padding-top:16px ;
+    gap: 10px;
+    transition: 0.5s;
+}
