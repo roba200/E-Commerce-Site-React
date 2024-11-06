@@ -1,0 +1,101 @@
+.Roadmap{
+    padding: 80px;
+}
+.cart-container{
+    margin: 0 5%;
+}
+
+.cartMain{
+    width: 100%;
+    display: grid;
+    grid-template-rows: auto;
+}
+
+.cartMain_row{
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    justify-content: center;
+    margin: 10px 0;
+    padding: 10px 0;
+    box-shadow: 0 0 10px rgba(4, 4, 4, 0.048);
+}
+
+.cartMain_row > div{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    text-wrap: nowrap;
+}
+
+.product{
+    padding:5px 80px;
+    display: flex;
+    align-items: center;
+}
+.product img{
+    padding:5px;
+}
+.price{
+    padding:5px 100px;
+    display: flex;
+    align-items: center;
+}
+.quantity{
+    padding:5px 100px;
+    display: flex;
+    align-items: center;
+}
+.quantity input[type="number"]{
+    width: 90px;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #333;
+    border-radius: 5px;
+}
+.subtotal{
+    padding:5px 100px;
+    display: flex;
+    align-items: center;
+}
+.item-button{
+    display: flex;
+    justify-content: space-between;
+    
+}
+.item-button-return{
+    text-align: left;
+}
+.item-button-update{
+    text-align: right;
+}
+.empty-area{
+    border-style: none;
+}
+.coupon-container{
+    display: flex;
+    justify-content: space-between;
+}
+.coupon{
+    display: flex;
+}
+.coupon-box{
+    display: flex;
+    border: 2px solid #333;
+    text-align: center;
+    margin-right:10px;
+}
+.coupon-box input{
+    padding:10px 0px;
+    text-align:center;
+}
+.toCheckout{
+    border:2px solid#333;
+    border-radius:5px;
+    display: flex;
+}
+.toCheckout-name{
+text-align: left;
+}
+.toCheckout-price{
+    text-align: right;
+}
