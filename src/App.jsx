@@ -1,10 +1,11 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LogIn from "./pages/LogIn/LogIn";
 import SignUp from "./pages/SignUP/SignUp";
 import WishList from "./pages/WishList/WishList";
 import Cart from "./pages/Cart/Cart";
 import CheckOut from "./pages/CheckOut/CheckOut";
 import Account from "./pages/Account/Account";
+import Error from "./pages/Error/Error";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
           <Route path="/cart" element={<Cart/>}/>
           <Route path="/checkout" element={<CheckOut/>}/>
           <Route path="/account" element={<Account/>}/>
-
+          <Route path="/error" element={<Error/>}/>
         </Routes>
       </BrowserRouter>
       {/* <LogIn></LogIn> */}
