@@ -3,7 +3,7 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import "./Cart.css"
 import WhiteButton from "../../components/WhiteButton/WhiteButton"
-import RedButton from "../../components/RedButton/RedButton"
+import Redbutton from "../../components/RedButton/Redbutton";
 
 function Cart() {
     return (
@@ -60,7 +60,7 @@ function Cart() {
                             <input type="text" placeholder="Coupon Code"></input>
                         </div>
                         <div className="coupon-button">
-                            <RedButton text="Add Coupon"></RedButton>
+                            <Redbutton text="Add Coupon"></Redbutton>
                         </div>
                     </div>
                     <div className="toCheckout">
@@ -86,7 +86,7 @@ function Cart() {
                             </div>
                         </div>
                         <div className="checkout-process">
-                        <RedButton text="Process to checkout"></RedButton>
+                        <Redbutton text="Process to checkout"></Redbutton>
                         </div>
                     </div>
                 </div>
@@ -96,4 +96,3 @@ function Cart() {
     );
 }
 export default Cart;
-//gfgh

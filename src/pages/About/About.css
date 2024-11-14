@@ -1,0 +1,152 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.stroy-container {
+    display: grid;
+    grid-template-columns: 60% 40%;
+}
+
+.our-story {
+    padding-left: 20%;
+    padding-right: 7%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    margin: 10px;
+}
+
+.our-story>b {
+    font-size: 70px;
+    font-weight: 500;
+}
+
+.our-story>p {
+    padding: 30px 0px;
+    font-size: 17px;
+}
+
+.stroy-img {
+    display: flex;
+    flex-direction: flex-end;
+}
+
+.box-container {
+    margin: 100px 200px;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+}
+
+.box {
+    box-shadow: 0 0 10px rgba(4, 4, 4, 0.186);
+    margin: 3%;
+    padding: 25px 10px;
+    text-align: center;
+
+}
+
+.box:hover {
+    background-color: #DB4444;
+    color: #ffff;
+}
+
+.box img {
+    display: block;
+    margin: auto;
+}
+
+.box>b {
+    padding: 5px;
+    font-weight: 500;
+    font-size: 40px;
+}
+
+.box>p {
+    font-size: 15px;
+    padding: 5px;
+}
+
+/* Team Section */
+.team-container {
+    margin: 30px 180px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.team-box {
+    text-align: left;
+    padding: 20px;
+}
+
+.team-img {
+    background-color: #F5F5F5;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+}
+
+.team-img img {
+    max-width: 100%;
+}
+
+.team-details b {
+    display: block;
+    font-size: 25px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+.team-details p {
+    color: #666;
+}
+
+.social-media {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.social-media img {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.social-media img:hover {
+    transform: scale(1.1);
+}
+
+.team-navigate {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+.features{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    margin: 3% 10%;
+    margin-top: 5%;
+}
+.feature-container{
+    text-align: center;
+    margin: 10px;
+}
+.feature-img{
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feature-container b{
+    font-size: 15px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+.feature-container p{
+    font-size: 10px;
+}
