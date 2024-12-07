@@ -4,6 +4,7 @@ import Footer from "../../components/Footer/Footer";
 import "./Cart.css";
 import WhiteButton from "../../components/WhiteButton/WhiteButton";
 import Redbutton from "../../components/RedButton/Redbutton";
+import StripeCheckout from "react-stripe-checkout";
 
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
@@ -37,8 +38,6 @@ function Cart() {
           `http://localhost:8080/api/products/${id}`
         );
         const product = await response.json();
-        // Add quantity to product object
-        product.quantity = productQuantities[id];
         products.push(product);
       }
       console.log("Fetched products with quantities:", products);
@@ -48,8 +47,39 @@ function Cart() {
     }
   };
 
+  const handleQuantityChange = async (productId, newQuantity) => {
+    if (newQuantity < 1) return;
+
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/carts/update/${localStorage.getItem(
+          "userId"
+        )}/${productId}/${newQuantity}`,
+        {
+          method: "PUT",
+        }
+      );
+
+      if (response.ok) {
+        setProductQuantities((prev) => ({
+          ...prev,
+          [productId]: newQuantity,
+        }));
+
+        fetchCartItems();
+      }
+    } catch (error) {
+      console.error("Error updating quantity:", error);
+    }
+  };
+
   return (
     <>
+      <StripeCheckout
+        stripeKey="pk_test_51JGNLWBVnEa8wQ1y8ZGMn9tw57qHCROwaNVr5eplb1UvQsN410gJpXPyNW8yFgNQZeM7twAoAjZ7LosccszLnDMz00pIIh0lL0"
+        amount={50 * 100}
+        name="Abonnement Annuelle"
+      />
       <Header />
       <div className="Roadmap">Home / Cart</div>
       <div className="cart-container">
@@ -71,16 +101,23 @@ function Cart() {
           {cartItems.map((item) => (
             <div className="cartMain_row" key={item._id}>
               <div className="product">
-                <img src={item.imageUrl1} alt={item.name} />
+                <img
+                  src={item.imageUrl1}
+                  alt={item.name}
+                  height={100}
+                  width={100}
+                />
                 {item.name}
               </div>
               <div className="price">${item.price}</div>
               <div className="quantity">
-                <input 
-                  type="number" 
-                  value={productQuantities[item.id]} 
-                  readOnly 
-                  onChange={(e) => {}}
+                <input
+                  type="number"
+                  value={productQuantities[item.id]}
+                  onChange={(e) =>
+                    handleQuantityChange(item.id, parseInt(e.target.value))
+                  }
+                  min="1"
                 />
               </div>
               <div className="subtotal">

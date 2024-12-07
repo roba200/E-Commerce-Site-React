@@ -11,7 +11,7 @@ const Header = () => {
 
         <div className="h-menu">
           <a href="" onClick={() => navigate("/homepage")}>Home</a>
-          <a href="">Contact</a>
+          <a href="" onClick={() => navigate("/wishlist")}>Contact</a>
           <a href="" onClick={() => navigate("/cart")}>About</a>
           <a href="" onClick={() => navigate("/signup")}>Sign Up</a>
         </div>
