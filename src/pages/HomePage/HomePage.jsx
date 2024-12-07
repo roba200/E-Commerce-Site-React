@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../../components/Header/Header";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -13,6 +13,48 @@ import WishListItemReview from "../../components/WishListItemReview/WishListItem
 import { Pagination, Navigation } from "swiper/modules";
 
 function HomePage() {
+  useEffect(() => {
+    fetchFlashSales();
+  }, []);
+
+  const fetchFlashSales = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/flashsales`
+      );
+      const data = await response.json();
+      const productsIds = [];
+      const discountedPrices = [];
+
+      for(const product of data){
+        productsIds.push(product.productId);
+        discountedPrices.push(product.discountedPrice);
+      }
+      fetchProducts(productsIds,discountedPrices);
+      console.log("Flash Sale data:", discountedPrices);
+    } catch (error) {
+      console.error("Error fetching Flash Sales:", error);
+    }
+  };
+
+  const fetchProducts = async (productIds,discountedPrices) => {
+    try {
+      const products = [];
+      for (const id of productIds) {
+        const response = await fetch(
+          `http://localhost:8080/api/products/${id}`
+        );
+        const product = await response.json();
+        products.push(product);
+      }
+      console.log("Fetched products with quantities:", products);
+      //setWishListItems(products);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+      //showErrorMessage();
+    }
+  };
+
   return (
     <div>
       <Header />
