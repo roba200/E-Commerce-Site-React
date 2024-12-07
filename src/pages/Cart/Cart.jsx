@@ -1,98 +1,137 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import "./Cart.css"
-import WhiteButton from "../../components/WhiteButton/WhiteButton"
+import "./Cart.css";
+import WhiteButton from "../../components/WhiteButton/WhiteButton";
 import Redbutton from "../../components/RedButton/Redbutton";
+
 function Cart() {
-    return (
-        <>
-            <Header></Header>
-            <div className="Roadmap">
-                Home  /  Cart
+  const [cartItems, setCartItems] = useState([]);
+  const [total, setTotal] = useState(0);
+  const [productQuantities, setProductQuantities] = useState({});
+
+  useEffect(() => {
+    fetchCartItems();
+  }, []);
+
+  const fetchCartItems = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/carts/user/${localStorage.getItem("userId")}`
+      );
+      const data = await response.json();
+      console.log("Cart data:", data);
+      setProductQuantities(data.productQuantities);
+      fetchProducts(data.productIds);
+      setTotal(data.totalPrice);
+    } catch (error) {
+      console.error("Error fetching cart items:", error);
+    }
+  };
+
+  const fetchProducts = async (productIds) => {
+    try {
+      const products = [];
+      for (const id of productIds) {
+        const response = await fetch(
+          `http://localhost:8080/api/products/${id}`
+        );
+        const product = await response.json();
+        // Add quantity to product object
+        product.quantity = productQuantities[id];
+        products.push(product);
+      }
+      console.log("Fetched products with quantities:", products);
+      setCartItems(products);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
+
+  return (
+    <>
+      <Header />
+      <div className="Roadmap">Home / Cart</div>
+      <div className="cart-container">
+        <div className="cartMain">
+          <div className="cartMain_row">
+            <div>
+              <p>Product</p>
             </div>
-            <div className="cart-container">
-                <div className="cartMain">
-                    <div className="cartMain_row">
-                        <div><p>Product</p></div>
-                        <div><p>Price</p></div>
-                        <div><p>Quantity</p></div>
-                        <div><p>Subtotal</p></div>
-                    </div>
-                    <div className="cartMain_row">
-                        <div className="product">
-                            <img src="../../public/Monitor-Cart-Small.png" alt="" />LCD monitor
-                        </div>
-                        <div className="price">$650</div>
-                        <div className="quantity"><input type="number" placeholder="1" /></div>
-                        <div className="subtotal">$650</div>
-                    </div>
-                    <div className="cartMain_row">
-                        <div className="product">
-                            <img src="../../public/Monitor-Cart-Small.png" alt="" />LCD monitor
-                        </div>
-                        <div className="price">$650</div>
-                        <div className="quantity"><input type="number" placeholder="1" /></div>
-                        <div className="subtotal">$650</div>
-                    </div>
-                    <div className="cartMain_row">
-                        <div className="product">
-                            <img src="../../public/Monitor-Cart-Small.png" alt="" />LCD monitor
-                        </div>
-                        <div className="price">$650</div>
-                        <div className="quantity"><input type="number" placeholder="1" /></div>
-                        <div className="subtotal">$650</div>
-                    </div>
-                </div>
-                <div className="item-button">
-                    <div className="item-button-return">
-                        <WhiteButton text="Return To Shop"></WhiteButton>
-                    </div>
-                    <div className="item-button-update">
-                        <WhiteButton text="Update Cart"></WhiteButton>
-                    </div>
-                </div>
-                <div className="cartMain_row"></div>
-                <div className="coupon-container">
-                    <div className="coupon">
-                        <div className="coupon-box">
-                            <input type="text" placeholder="Coupon Code"></input>
-                        </div>
-                        <div className="coupon-button">
-                            <Redbutton text="Add Coupon"></Redbutton>
-                        </div>
-                    </div>
-                    <div className="toCheckout">
-                        <p>Cart Total</p>
-                        <div className="toCheckout-name">
-                            Subtotal:
-                            <div className="toCheckout-price">
-                                $1750
-                            </div>
-                        </div>
-                        <hr />
-                        <div className="toCheckout-name">
-                            Shipping:
-                            <div className="toCheckout-price">
-                               Free
-                            </div>
-                        </div>
-                        <hr />
-                        <div className="toCheckout-name">
-                            Total:
-                            <div className="toCheckout-price">
-                                $1750
-                            </div>
-                        </div>
-                        <div className="checkout-process">
-                        <Redbutton text="Process to checkout"></Redbutton>
-                        </div>
-                    </div>
-                </div>
+            <div>
+              <p>Price</p>
             </div>
-            <Footer></Footer>
-        </>
-    );
+            <div>
+              <p>Quantity</p>
+            </div>
+            <div>
+              <p>Subtotal</p>
+            </div>
+          </div>
+          {cartItems.map((item) => (
+            <div className="cartMain_row" key={item._id}>
+              <div className="product">
+                <img src={item.imageUrl1} alt={item.name} />
+                {item.name}
+              </div>
+              <div className="price">${item.price}</div>
+              <div className="quantity">
+                <input 
+                  type="number" 
+                  value={productQuantities[item.id]} 
+                  readOnly 
+                  onChange={(e) => {}}
+                />
+              </div>
+              <div className="subtotal">
+                ${item.price * productQuantities[item.id]}
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="item-button">
+          <div className="item-button-return">
+            <WhiteButton text="Return To Shop"></WhiteButton>
+          </div>
+          <div className="item-button-update">
+            <WhiteButton text="Update Cart"></WhiteButton>
+          </div>
+        </div>
+        <div className="cartMain_row"></div>
+        <div className="coupon-container">
+          <div className="coupon">
+            <div className="coupon-box">
+              <input type="text" placeholder="Coupon Code"></input>
+            </div>
+            <div className="coupon-button">
+              <Redbutton text="Add Coupon"></Redbutton>
+            </div>
+          </div>
+          <div className="toCheckout">
+            <p>Cart Total</p>
+            <div className="toCheckout-name">
+              Subtotal:
+              <div className="toCheckout-price">${total}</div>
+            </div>
+            <hr />
+            <div className="toCheckout-name">
+              Shipping:
+              <div className="toCheckout-price">Free</div>
+            </div>
+            <hr />
+            <div className="toCheckout-name">
+              Total:
+              <div className="toCheckout-price">${total}</div>
+            </div>
+            <div className="checkout-process">
+              <Redbutton text="Process to checkout"></Redbutton>
+            </div>
+          </div>
+        </div>
+      </div>
+      <Footer />
+    </>
+  );
 }
+
 export default Cart;
-//gfgh

@@ -10,9 +10,9 @@ const Header = () => {
         <img src="./logo.png" alt="logo" width={100} />
 
         <div className="h-menu">
-          <a href="">Home</a>
+          <a href="" onClick={() => navigate("/homepage")}>Home</a>
           <a href="">Contact</a>
-          <a href="">About</a>
+          <a href="" onClick={() => navigate("/cart")}>About</a>
           <a href="" onClick={() => navigate("/signup")}>Sign Up</a>
         </div>
 
