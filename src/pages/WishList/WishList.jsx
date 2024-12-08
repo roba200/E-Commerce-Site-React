@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Header from "../../components/Header/Header";
 import WhiteButton from "../../components/WhiteButton/WhiteButton";
-import "./WishList.css";
 import WishListItem from "../../components/WishListItem/WishListItem";
 import WishListItemReview from "../../components/WishListItemReview/WishListItemReview";
 import Footer from "../../components/Footer/Footer";
@@ -33,7 +32,6 @@ function WishList() {
       position: "top-right",
     });
   };
-
 
   const fetchWishListItems = async () => {
     try {
@@ -81,7 +79,6 @@ function WishList() {
       console.error("Error fetching wishlist items:", error);
       showErrorMessage();
     }
-    
   };
 
   const addToCart = async (productId) => {
@@ -101,106 +98,111 @@ function WishList() {
   };
 
   return (
-    <div>
-      <Header></Header>
+    <div className="min-h-screen flex flex-col">
+      <Header />
 
-      <div className="wish-list">
-        <div className="wish-list-row">
-          Wishlist ({wishListItems.length} items)
-          <WhiteButton text="Move to Bag"></WhiteButton>
-        </div>
-        <div className="px-[135px]">
-          <div className="flex overflow-y-scroll">
-            {wishListItems.map((item) => (
-              <WishListItem
+      <main className="flex-grow">
+        <div className="container mx-auto px-4 lg:px-6">
+          {/* Wishlist Header */}
+          <div className="flex justify-between items-center my-20 mx-4 lg:mx-[135px]">
+            <h1 className="text-xl lg:text-2xl font-medium">
+              Wishlist ({wishListItems.length} items)
+            </h1>
+            <WhiteButton text="Move to Bag" />
+          </div>
+
+          {/* Wishlist Items */}
+          <div className="px-4 lg:px-[135px]">
+            <div className="flex gap-4 overflow-x-auto pb-4 hide-scrollbar">
+              {wishListItems.map((item) => (
+                <WishListItem
+                  key={item.id}
+                  discount="-29%"
+                  itemName={item.name}
+                  nowPrice={item.price}
+                  wasPrice={item.price}
+                  image={item.imageUrl1}
+                  onDeleteClick={() =>
+                    removeItemFromWishList(item.id).then(() => fetchWishListItems())
+                  }
+                  onAddToCartClick={() => addToCart(item.id)}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Just For You Section */}
+          <div className="flex justify-between items-center px-4 lg:px-[135px] pt-[88px]">
+            <div className="flex items-center">
+              <div className="h-10 w-5 bg-[#DB4444] rounded"></div>
+              <h2 className="pl-3 text-lg font-medium">Just For You</h2>
+            </div>
+            <WhiteButton text="See All" />
+          </div>
+
+          {/* Review Items */}
+          <div className="px-4 lg:px-[135px] pt-[68px] pb-[140px]">
+            <div className="flex gap-4 overflow-x-auto pb-4 hide-scrollbar">
+              <WishListItemReview
                 discount="-29%"
-                itemName={item.name}
-                nowPrice={item.price}
-                wasPrice={item.price}
-                image={item.imageUrl1}
-                
-                onDeleteClick={() =>
-                  removeItemFromWishList(item.id).then(() =>
-                    fetchWishListItems()
-                  )
-                }
-                onAddToCartClick={() => addToCart(item.id)}
-              ></WishListItem>
-              
-              
-            ))}
+                itemName="Gucci duffle bag"
+                nowPrice="$20"
+                wasPrice="$50"
+                image="./bag.png"
+                rating={0}
+                count="65"
+              />
+              <WishListItemReview
+                discount="-29%"
+                itemName="Gucci duffle bag"
+                nowPrice="$20"
+                wasPrice="$50"
+                image="./bag.png"
+                rating={0}
+                count="65"
+              />
+              <WishListItemReview
+                discount="-29%"
+                itemName="Gucci duffle bag"
+                nowPrice="$20"
+                wasPrice="$50"
+                image="./bag.png"
+                rating={0}
+                count="65"
+              />
+              <WishListItemReview
+                discount="-29%"
+                itemName="Gucci duffle bag"
+                nowPrice="$20"
+                wasPrice="$50"
+                image="./bag.png"
+                rating={0}
+                count="65"
+              />
+              <WishListItemReview
+                discount="-29%"
+                itemName="Gucci duffle bag"
+                nowPrice="$20"
+                wasPrice="$50"
+                image="./bag.png"
+                rating={0}
+                count="65"
+              />
+              <WishListItemReview
+                discount="-29%"
+                itemName="Gucci duffle bag"
+                nowPrice="$20"
+                wasPrice="$50"
+                image="./bag.png"
+                rating={0}
+                count="65"
+              />
+            </div>
           </div>
         </div>
-        <div className="flex justify-between px-[135px] pt-[88px]">
-          <div className="flex items-center">
-            <div className="h-[40px] w-[20px] bg-[#DB4444] rounded-[4px]"></div>
-            <div className="pl-3">Just For You</div>
-          </div>
-          <div>
-            <WhiteButton text="See All"></WhiteButton>
-          </div>
-        </div>
+      </main>
 
-        <div className="px-[135px] pt-[68px] pb-[140px]">
-          <div className="flex overflow-y-scroll">
-            <WishListItemReview
-              discount="-29%"
-              itemName="Gucci duffle bag"
-              nowPrice="$20"
-              wasPrice="$50"
-              image="./bag.png"
-              rating={0}
-              count="65"
-            ></WishListItemReview>
-            <WishListItemReview
-              discount="-29%"
-              itemName="Gucci duffle bag"
-              nowPrice="$20"
-              wasPrice="$50"
-              image="./bag.png"
-              rating={0}
-              count="65"
-            ></WishListItemReview>
-            <WishListItemReview
-              discount="-29%"
-              itemName="Gucci duffle bag"
-              nowPrice="$20"
-              wasPrice="$50"
-              image="./bag.png"
-              rating={0}
-              count="65"
-            ></WishListItemReview>
-            <WishListItemReview
-              discount="-29%"
-              itemName="Gucci duffle bag"
-              nowPrice="$20"
-              wasPrice="$50"
-              image="./bag.png"
-              rating={0}
-              count="65"
-            ></WishListItemReview>
-            <WishListItemReview
-              discount="-29%"
-              itemName="Gucci duffle bag"
-              nowPrice="$20"
-              wasPrice="$50"
-              image="./bag.png"
-              rating={0}
-              count="65"
-            ></WishListItemReview>
-            <WishListItemReview
-              discount="-29%"
-              itemName="Gucci duffle bag"
-              nowPrice="$20"
-              wasPrice="$50"
-              image="./bag.png"
-              rating={0}
-              count="65"
-            ></WishListItemReview>
-          </div>
-        </div>
-      </div>
-      <Footer></Footer>
+      <Footer />
       <ToastContainer />
     </div>
   );
