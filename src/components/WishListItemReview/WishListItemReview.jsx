@@ -7,40 +7,36 @@ const WishListItemReview = ({
   wasPrice,
   image,
   count,
+  rating,
+  onAddToCartClick,
 }) => {
   return (
-    <div className="inline px-3">
-      <div className="h-[209px] w-[270px] bg-[#F5F5F5] flex items-center justify-center flex-col">
-        <div className="w-full flex justify-between px-[13px] items-center">
+    <div className="inline-block px-3 mb-4">
+      <div className="h-[209px] w-[270px] bg-[#F5F5F5] flex items-center justify-center flex-col relative">
+        <div className="w-full flex justify-between px-[13px] items-center absolute top-2">
           <div className="h-[26px] w-[55px] bg-[#DB4444] text-center text-[12px] flex justify-center items-center text-[#fafafa] rounded-[4px]">
             {discount}
           </div>
-          <div className="bg-white h-[34px] w-[34px] flex justify-center items-center">
-            <img src="./icon-delete.png" alt="" srcset="" />
-          </div>
+          
         </div>
-        <img src={image} alt="" srcset="" />
-      </div>
-      <div className="h-[41px] w-[270px] bg-[#000000] flex justify-center items-center">
-        <img src="Cart1.png" alt="" srcset="" />
-        <div className="text-[#fafafa] text-[12px]">Add to Cart</div>
+        <img src={image} alt={itemName} className="w-[100px] h-[100px] object-contain" />
       </div>
 
-      <div className="pt-4">{itemName}</div>
-      <div className="flex justify-items-start">
-        <div className="text-[#DB4444] ">{nowPrice}</div>
-        <div className="pl-4 text-[#d9d9d9] line-through">{wasPrice}</div>
+      <button className="h-[41px] w-[270px] bg-[#000000] flex justify-center items-center gap-2 hover:bg-gray-800 transition-colors" onClick={onAddToCartClick}>
+        <img src="Cart1.png" alt="Cart" className="w-5 h-5" />
+        <span className="text-[#fafafa] text-[12px]">Add to Cart</span>
+      </button>
+
+      <div className="pt-4 font-medium">{itemName}</div>
+      <div className="flex gap-4 items-center">
+        <span className="text-[#DB4444] font-semibold">{nowPrice}</span>
+        <span className="text-[#d9d9d9] line-through">{wasPrice}</span>
       </div>
-      <div className="flex items-center">
-        <img src="star.png" alt="" srcset="" className="pr-1"/>
-        <img src="star.png" alt="" srcset="" className="pr-1"/>
-        <img src="star.png" alt="" srcset="" className="pr-1"/>
-        <img src="star.png" alt="" srcset="" className="pr-1"/>
-        <img src="star.png" alt="" srcset="" className="pr-3"/>
-        <div>
-        ({count})
-        </div>
-        
+      <div className="flex items-center gap-1">
+        {[...Array(Math.round(rating))].map((_, index) => (
+          <img key={index} src="star.png" alt="star" className="w-4 h-4" />
+        ))}
+        <span className="pl-3">({count})</span>
       </div>
     </div>
   );
