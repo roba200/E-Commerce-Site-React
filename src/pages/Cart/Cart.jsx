@@ -5,11 +5,13 @@ import "./Cart.css";
 import WhiteButton from "../../components/WhiteButton/WhiteButton";
 import Redbutton from "../../components/RedButton/Redbutton";
 import StripeCheckout from "react-stripe-checkout";
+import { useNavigate } from 'react-router-dom';
 
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const [total, setTotal] = useState(0);
   const [productQuantities, setProductQuantities] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchCartItems();
@@ -73,13 +75,39 @@ function Cart() {
     }
   };
 
+  const handleCheckout = async () => {
+    try {
+      const orderData = {
+        userId: localStorage.getItem("userId"),
+        productIds: cartItems.map(item => item.id),
+        productQuantities: productQuantities,
+        totalPrice: total,
+        orderDate: new Date().toISOString(),
+        status: "pending"
+      };
+
+      const response = await fetch('http://localhost:8080/api/orders', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(orderData)
+      });
+
+      if (response.ok) {
+        const responseText = await response.text();
+        console.log('Order created successfully:', responseText);
+        navigate(`/checkout/${total}/${responseText}`);
+      } else {
+        console.error('Failed to create order');
+      }
+    } catch (error) {
+      console.error('Error creating order:', error);
+    }
+  };
+
   return (
     <>
-      <StripeCheckout
-        stripeKey="pk_test_51JGNLWBVnEa8wQ1y8ZGMn9tw57qHCROwaNVr5eplb1UvQsN410gJpXPyNW8yFgNQZeM7twAoAjZ7LosccszLnDMz00pIIh0lL0"
-        amount={50 * 100}
-        name="Abonnement Annuelle"
-      />
       <Header />
       <div className="Roadmap">Home / Cart</div>
       <div className="cart-container">
@@ -161,7 +189,7 @@ function Cart() {
               <div className="toCheckout-price">${total}</div>
             </div>
             <div className="checkout-process">
-              <Redbutton text="Process to checkout"></Redbutton>
+              <Redbutton text="Process to checkout" onClick={handleCheckout}></Redbutton>
             </div>
           </div>
         </div>
