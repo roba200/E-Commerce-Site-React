@@ -68,7 +68,7 @@ function App() {
               <WishList />
             </ProtectedRoute>
           } />
-          <Route path="/checkout" element={
+          <Route path="/checkout/:total/:orderId" element={
             <ProtectedRoute>
               <CheckOut />
             </ProtectedRoute>

@@ -118,6 +118,7 @@ function WishList() {
                 nowPrice={item.price}
                 wasPrice={item.price}
                 image={item.imageUrl1}
+                
                 onDeleteClick={() =>
                   removeItemFromWishList(item.id).then(() =>
                     fetchWishListItems()
@@ -148,6 +149,7 @@ function WishList() {
               nowPrice="$20"
               wasPrice="$50"
               image="./bag.png"
+              rating={0}
               count="65"
             ></WishListItemReview>
             <WishListItemReview
@@ -156,6 +158,7 @@ function WishList() {
               nowPrice="$20"
               wasPrice="$50"
               image="./bag.png"
+              rating={0}
               count="65"
             ></WishListItemReview>
             <WishListItemReview
@@ -164,6 +167,7 @@ function WishList() {
               nowPrice="$20"
               wasPrice="$50"
               image="./bag.png"
+              rating={0}
               count="65"
             ></WishListItemReview>
             <WishListItemReview
@@ -172,6 +176,7 @@ function WishList() {
               nowPrice="$20"
               wasPrice="$50"
               image="./bag.png"
+              rating={0}
               count="65"
             ></WishListItemReview>
             <WishListItemReview
@@ -180,6 +185,7 @@ function WishList() {
               nowPrice="$20"
               wasPrice="$50"
               image="./bag.png"
+              rating={0}
               count="65"
             ></WishListItemReview>
             <WishListItemReview
@@ -188,6 +194,7 @@ function WishList() {
               nowPrice="$20"
               wasPrice="$50"
               image="./bag.png"
+              rating={0}
               count="65"
             ></WishListItemReview>
           </div>

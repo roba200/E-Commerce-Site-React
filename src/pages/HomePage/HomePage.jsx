@@ -1,43 +1,60 @@
 import React, { useState, useEffect } from "react";
 import Header from "../../components/Header/Header";
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import WishListItemReview from "../../components/WishListItemReview/WishListItemReview";
-
-// import required modules
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Pagination, Navigation } from "swiper/modules";
 
 function HomePage() {
+  const [flashsales, setFlashSales] = useState([]);
+  const [discountedPrices, setDiscountedPrices] = useState({});
   useEffect(() => {
     fetchFlashSales();
   }, []);
 
+  const showCartAddtMessage = () => {
+    toast.success("Product Added to cart!", {
+      position: "top-right",
+    });
+  };
+
+  const showItemDeleteMessage = () => {
+    toast.info("Product removed from cart!", {
+      position: "top-right",
+    });
+  };
+
+  const showErrorMessage = () => {
+    toast.error("Something went wrong!", {
+      position: "top-right",
+    });
+  };
+
   const fetchFlashSales = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:8080/api/flashsales`
-      );
+      const response = await fetch(`http://localhost:8080/api/flashsales`);
       const data = await response.json();
       const productsIds = [];
       const discountedPrices = [];
 
-      for(const product of data){
+      for (const product of data) {
         productsIds.push(product.productId);
         discountedPrices.push(product.discountedPrice);
       }
-      fetchProducts(productsIds,discountedPrices);
+      fetchProducts(productsIds, discountedPrices);
+      setDiscountedPrices(discountedPrices);
       console.log("Flash Sale data:", discountedPrices);
     } catch (error) {
       console.error("Error fetching Flash Sales:", error);
+      showErrorMessage();
     }
   };
 
-  const fetchProducts = async (productIds,discountedPrices) => {
+  const fetchProducts = async (productIds) => {
     try {
       const products = [];
       for (const id of productIds) {
@@ -48,10 +65,26 @@ function HomePage() {
         products.push(product);
       }
       console.log("Fetched products with quantities:", products);
-      //setWishListItems(products);
+      setFlashSales(products);
     } catch (error) {
       console.error("Error fetching products:", error);
-      //showErrorMessage();
+      showErrorMessage();
+    }
+  };
+
+  const addToCart = async (productId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/carts/add/${localStorage.getItem(
+          "userId"
+        )}/${productId}`,
+        { method: "POST" }
+      );
+      showCartAddtMessage();
+      const data = await response.json();
+    } catch (error) {
+      console.error("Error adding to cart items:", error);
+      showErrorMessage();
     }
   };
 
@@ -107,57 +140,26 @@ function HomePage() {
         </div>
         <div className="pt-[68px]">
           <div className="flex overflow-y-scroll">
-            <WishListItemReview
-              discount="-29%"
-              itemName="Gucci duffle bag"
-              nowPrice="$20"
-              wasPrice="$50"
-              image="./bag.png"
-              count="65"
-            ></WishListItemReview>
-            <WishListItemReview
-              discount="-29%"
-              itemName="Gucci duffle bag"
-              nowPrice="$20"
-              wasPrice="$50"
-              image="./bag.png"
-              count="65"
-            ></WishListItemReview>
-            <WishListItemReview
-              discount="-29%"
-              itemName="Gucci duffle bag"
-              nowPrice="$20"
-              wasPrice="$50"
-              image="./bag.png"
-              count="65"
-            ></WishListItemReview>
-            <WishListItemReview
-              discount="-29%"
-              itemName="Gucci duffle bag"
-              nowPrice="$20"
-              wasPrice="$50"
-              image="./bag.png"
-              count="65"
-            ></WishListItemReview>
-            <WishListItemReview
-              discount="-29%"
-              itemName="Gucci duffle bag"
-              nowPrice="$20"
-              wasPrice="$50"
-              image="./bag.png"
-              count="65"
-            ></WishListItemReview>
-            <WishListItemReview
-              discount="-29%"
-              itemName="Gucci duffle bag"
-              nowPrice="$20"
-              wasPrice="$50"
-              image="./bag.png"
-              count="65"
-            ></WishListItemReview>
+            {flashsales.map((item, index) => (
+              <WishListItemReview
+                discount={
+                  Math.round(
+                    ((item.price - discountedPrices[index]) / item.price) * 100
+                  ) + "%"
+                }
+                itemName={item.name}
+                nowPrice={discountedPrices[index]}
+                wasPrice={item.price}
+                image={item.imageUrl1}
+                count="65"
+                rating={item.rating}
+                onAddToCartClick={() => addToCart(item.id)}
+              ></WishListItemReview>
+            ))}
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }
