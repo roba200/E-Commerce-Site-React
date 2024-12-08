@@ -6,10 +6,12 @@ import WishListItemReview from "../../components/WishListItemReview/WishListItem
 import Footer from "../../components/Footer/Footer";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 function WishList() {
   const [wishListItems, setWishListItems] = useState([]);
   const [isPopupOpen, setPopupOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchWishListItems();
@@ -86,7 +88,7 @@ function WishList() {
       const response = await fetch(
         `http://localhost:8080/api/carts/add/${localStorage.getItem(
           "userId"
-        )}/${productId}`,
+        )}/${productId}/1`,
         { method: "POST" }
       );
       showCartAddtMessage();
@@ -126,6 +128,7 @@ function WishList() {
                     removeItemFromWishList(item.id).then(() => fetchWishListItems())
                   }
                   onAddToCartClick={() => addToCart(item.id)}
+                  onClick={() => navigate(`/productdetails/${item.id}`)}
                 />
               ))}
             </div>

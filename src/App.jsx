@@ -9,6 +9,8 @@ import Error from "./pages/Error/Error";
 import React, { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import HomePage from "./pages/HomePage/HomePage";
+import Order from "./pages/Order/Order";
+import ProductDetails from "./pages/ProductDetails/ProductDetails";
 
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem("token");
@@ -73,9 +75,19 @@ function App() {
               <CheckOut />
             </ProtectedRoute>
           } />
+          <Route path="/productdetails/:id/" element={
+            <ProtectedRoute>
+              <ProductDetails />
+            </ProtectedRoute>
+          } />
           <Route path="/account" element={
             <ProtectedRoute>
               <Account />
+            </ProtectedRoute>
+          } />
+          <Route path="/order" element={
+            <ProtectedRoute>
+              <Order />
             </ProtectedRoute>
           } />
           <Route path="/error" element={<Error />} />
