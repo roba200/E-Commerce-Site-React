@@ -77,7 +77,7 @@ function HomePage() {
       const response = await fetch(
         `http://localhost:8080/api/carts/add/${localStorage.getItem(
           "userId"
-        )}/${productId}`,
+        )}/${productId}/1`,
         { method: "POST" }
       );
       showCartAddtMessage();
