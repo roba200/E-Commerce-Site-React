@@ -1,16 +1,19 @@
 import React from 'react'
 
-const WishListItem = ({discount, itemName, nowPrice, wasPrice, image, onDeleteClick , onAddToCartClick}) => {
+const WishListItem = ({discount, itemName, nowPrice, wasPrice, image, onDeleteClick, onAddToCartClick, onClick}) => {
   return (
     <div className="inline-block px-3 mb-4">
-      <div className="h-[209px] w-[270px] bg-[#F5F5F5] flex items-center justify-center flex-col relative">
+      <div className="h-[209px] w-[270px] bg-[#F5F5F5] flex items-center justify-center flex-col relative cursor-pointer" onClick={onClick}>
         <div className="w-full flex justify-between px-[13px] items-center absolute top-2">
           <div className="h-[26px] w-[55px] bg-[#DB4444] text-center text-[12px] flex justify-center items-center text-[#fafafa] rounded-[4px]">
             {discount}
           </div>
           <button 
             className="bg-white h-[34px] w-[34px] flex justify-center items-center cursor-pointer rounded-full hover:bg-gray-100"
-            onClick={onDeleteClick}
+            onClick={(e) => {
+              e.stopPropagation();
+              onDeleteClick(); 
+            }}
           >
             <img src="/icon-delete.png" alt="Delete" className="w-5 h-5" />
           </button>

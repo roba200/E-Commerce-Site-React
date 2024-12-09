@@ -151,3 +151,17 @@
   font-size: 1.2rem;
   color: #666;
 }
+
+.delete-button {
+  margin-left: 20px;
+  background: none;
+  border: none;
+  color: #ff0000;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0 10px;
+}
+
+.delete-button:hover {
+  color: #cc0000;
+}

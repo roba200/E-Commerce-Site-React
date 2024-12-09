@@ -75,6 +75,23 @@ function Cart() {
     }
   };
 
+  const deleteCartItem = async (productId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/carts/remove/${localStorage.getItem("userId")}/${productId}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (response.ok) {
+        fetchCartItems();
+      }
+    } catch (error) {
+      console.error("Error deleting cart item:", error);
+    }
+  };
+
   const handleCheckout = async () => {
     try {
       const orderData = {
@@ -150,6 +167,12 @@ function Cart() {
               </div>
               <div className="subtotal">
                 ${item.price * productQuantities[item.id]}
+                <button 
+                  className="delete-button"
+                  onClick={() => deleteCartItem(item.id)}
+                >
+                  ×
+                </button>
               </div>
             </div>
           ))}
