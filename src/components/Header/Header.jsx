@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
 import PopoverProfile from "../PopoverProfile/PopoverProfile";
@@ -7,24 +7,12 @@ import MagGlass from "../../../public/mag-glass.png";
 
 const Header = () => {
   const navigate = useNavigate();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-
   return (
     <section className="h-wrapper">
       <div className="h-container">
-        <img src={Logo} alt="logo" className="logo" />
-        
-        <button className="mobile-menu-btn" onClick={toggleMobileMenu}>
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+        <img src={Logo} alt="logo" width={100} />
 
-        <div className={`h-menu ${isMobileMenuOpen ? 'active' : ''}`}>
+        <div className="h-menu">
           <a href="" onClick={() => navigate("/homepage")}>
             Home
           </a>
@@ -38,7 +26,7 @@ const Header = () => {
             Sign Up
           </a>
         </div>
-        <div className={`flex search-profile ${isMobileMenuOpen ? 'active' : ''}`}>
+        <div className="flex">
           <div className="search-input">
             <input type="text" placeholder="What are you looking for?" />
             <img src={MagGlass} alt="search" className="magnifying-glass" />

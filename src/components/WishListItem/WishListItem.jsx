@@ -12,7 +12,7 @@ const WishListItem = ({discount, itemName, nowPrice, wasPrice, image, onDeleteCl
             className="bg-white h-[34px] w-[34px] flex justify-center items-center cursor-pointer rounded-full hover:bg-gray-100"
             onClick={(e) => {
               e.stopPropagation();
-              onDeleteClick();
+              onDeleteClick(); 
             }}
           >
             <img src="/icon-delete.png" alt="Delete" className="w-5 h-5" />

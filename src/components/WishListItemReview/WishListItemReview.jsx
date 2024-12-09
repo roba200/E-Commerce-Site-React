@@ -9,10 +9,11 @@ const WishListItemReview = ({
   count,
   rating,
   onAddToCartClick,
+  onClick
 }) => {
   return (
     <div className="inline-block px-3 mb-4">
-      <div className="h-[209px] w-[270px] bg-[#F5F5F5] flex items-center justify-center flex-col relative">
+      <div className="h-[209px] w-[270px] bg-[#F5F5F5] flex items-center justify-center flex-col relative cursor-pointer" onClick={onClick}>
         <div className="w-full flex justify-between px-[13px] items-center absolute top-2">
           <div className="h-[26px] w-[55px] bg-[#DB4444] text-center text-[12px] flex justify-center items-center text-[#fafafa] rounded-[4px]">
             {discount}
