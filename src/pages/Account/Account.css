@@ -1,0 +1,123 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.welcome{
+    display: flex;
+    flex-direction: row;
+    padding-top: 80px;
+    
+}
+.navigate-panel{
+    padding-top: 80px;
+}
+.navigate-panel a:hover{
+    color: red;
+}
+.navigate-panel a{
+    text-decoration: none;
+   
+}
+.username{
+    color: blue;
+    padding-left: 20px;
+}
+
+.my{
+    display: flex;
+   justify-content: space-around;
+   width: 100%;
+   padding-top: 80px;
+    
+}
+.my ul{
+    list-style: none;
+   
+}
+.my-account{
+    width: 300px;
+}
+
+.my-account ul{
+    padding: 20px;
+    padding-left: 20px;
+    margin-left: 30px;
+}
+.my-account ul li{
+    margin-left: 40px;
+    padding-right: 10px;
+}
+.my-account ul li ul li{
+    margin-left: -20px;
+}
+.list{
+    color: darkcyan;
+}
+
+.navigate{
+    margin: 0px 90px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile{
+    width: 70%;
+    box-shadow: 0 0 2px #efddddfb;
+    
+    
+   
+}
+.details{
+    padding-left: 80px;
+    
+   
+}
+.edit-profile{
+    color: red;
+    padding-top: 40px;
+    padding-bottom: 10px;
+}
+.details-user{
+    display: flex;
+    justify-content:space-between;
+    
+}
+.namel{
+    padding-right: 300px;
+}
+.namef input{
+    height: 50px;
+    border: none;
+    outline: none;
+    width: 250px;
+    background-color: #f5f5f5;
+    font-size: 16px;
+    margin-bottom: 20px;
+    
+     
+}
+.namel input{
+    height: 50px;
+    border: none;
+    outline: none;
+    width: 250px;
+    background-color: #f5f5f5;
+    font-size: 16px;
+    margin-bottom: 20px;
+    
+     
+}
+.password{
+    height: 50px;
+    border: none;
+    outline: none;
+    width: 560px;
+    background-color: #f5f5f5;
+    font-size: 16px;
+    margin-bottom: 20px; 
+}
+.cancel{
+    display: flex;
+    padding-right: 50px;
+}
