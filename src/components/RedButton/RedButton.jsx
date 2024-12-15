@@ -1,9 +1,9 @@
 import React from 'react'
 import './RedButton.css'
 
-const Redbutton = ({text}) => {
+const Redbutton = ({text,onClick}) => {
   return (
-    <button type="submit" className='red-button'>{text}</button>
+    <button type="submit" className='red-button' onClick={onClick}>{text}</button>
    
   );
 }

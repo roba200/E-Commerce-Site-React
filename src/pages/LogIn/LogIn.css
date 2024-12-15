@@ -1,69 +1,84 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 * {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
 
 .login-container {
   display: flex;
   align-items: center;
-  padding-top: 50px;
-  padding-bottom: 100px;
-}
-
-.title {
-  font-size: 36px;
-  font-weight: 500;
-  line-height: 30px;
-  letter-spacing: 4%;
-  padding-bottom: 30px;
-}
-.sub-title {
-  font-size: 16px;
-  font-family: Poppins;
-  font-weight: 400;
-  line-height: 24px;
-  letter-spacing: 0%;
-}
-
-.login-form {
-  padding-left: 30px;
-  padding-right: 30px;
-  width: 400px;
-  height: max-content;
+  justify-content: center;
+  gap: 2rem;
+  padding: 3rem 1rem;
+  min-height: 80vh;
 }
 
 .login-wrapper {
-  display: flex;
-  justify-content: center;
   width: 100%;
+  max-width: 500px;
+  padding: 2rem;
+}
+
+.login-form {
+  width: 100%;
+}
+
+.title {
+  font-size: 2.25rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 2rem;
 }
 
 .login-form input {
-font-size: 16px;
-  padding-top: 60px;
   width: 100%;
-  outline: none;
+  font-size: 1rem;
+  padding: 0.5rem 0;
+  margin-bottom: 1.5rem;
   border: none;
-  border-bottom: 1px solid #988f8f;
+  border-bottom: 1px solid #ddd;
   background-color: transparent;
+  transition: border-color 0.3s ease;
+}
+
+.login-form input:focus {
+  outline: none;
+  border-bottom-color: #db4444;
 }
 
 .button-side {
-  padding-top: 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 2rem;
 }
 
 .forgot-password {
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1rem;
   color: #db4444;
-  font-family: Poppins;
-  font-weight: 400;
-  line-height: 24px;
-  letter-spacing: 0%;
+  transition: opacity 0.3s ease;
+}
+
+.forgot-password:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
+  }
+  
+  .login-container img {
+    max-width: 100%;
+    height: auto;
+  }
 }

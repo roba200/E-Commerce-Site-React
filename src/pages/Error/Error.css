@@ -1,0 +1,29 @@
+.navigate-panel{
+    padding-top: 80px;
+    padding-left: 20px;
+}
+.navigate-panel a:hover{
+    color: red;
+}
+.navigate-panel a{
+    text-decoration: none;  
+}
+.not-found{
+    font-size: 110px;
+    display: flex;
+    justify-content: center;
+    color: #000000;
+    padding-top: 100px;
+}
+.not-found-p{
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    color: #000000;
+}
+.back-home{
+   padding-left: 525px;
+   padding-right: 525px;
+   padding-top: 80px;
+   padding-bottom: 120px;
+}
