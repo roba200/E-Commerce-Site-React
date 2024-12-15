@@ -142,7 +142,7 @@ function ProductDetails() {
               <span className="text-gray-600">({product.rating} ratings)</span>
             </div>
 
-            <div className="text-2xl font-bold">${product.price}</div>
+            <div className="text-2xl font-bold">${product.discountedPrice}</div>
 
             <p className="text-gray-600">{product.description}</p>
 
