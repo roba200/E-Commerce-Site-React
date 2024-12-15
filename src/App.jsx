@@ -1,4 +1,10 @@
-import { BrowserRouter, Route, Routes, Navigate, useLocation } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  Navigate,
+  useLocation,
+} from "react-router-dom";
 import LogIn from "./pages/LogIn/LogIn";
 import SignUp from "./pages/SignUP/SignUp";
 import WishList from "./pages/WishList/WishList";
@@ -11,6 +17,8 @@ import { jwtDecode } from "jwt-decode";
 import HomePage from "./pages/HomePage/HomePage";
 import Order from "./pages/Order/Order";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
+import Profile from "./pages/Profile/Profile";
+import Contact from "./pages/Contact/Contact";
 
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem("token");
@@ -48,48 +56,101 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route 
-            path="/" 
-            element={isLoggedIn ? <Navigate to="/homepage" /> : <LogIn setIsLoggedIn={setIsLoggedIn} />} 
+          <Route
+            path="/"
+            element={
+              isLoggedIn ? (
+                <Navigate to="/homepage" />
+              ) : (
+                <LogIn setIsLoggedIn={setIsLoggedIn} />
+              )
+            }
           />
           <Route path="/signup" element={<SignUp />} />
-          
+
           {/* Protected Routes */}
-          <Route path="/homepage" element={
-            <ProtectedRoute>
-              <HomePage />
-            </ProtectedRoute>
-          } />
-          <Route path="/cart" element={
-            <ProtectedRoute>
-              <Cart />
-            </ProtectedRoute>
-          } />
-          <Route path="/wishList" element={
-            <ProtectedRoute>
-              <WishList />
-            </ProtectedRoute>
-          } />
-          <Route path="/checkout/:total/:orderId" element={
-            <ProtectedRoute>
-              <CheckOut />
-            </ProtectedRoute>
-          } />
-          <Route path="/productdetails/:id/" element={
-            <ProtectedRoute>
-              <ProductDetails />
-            </ProtectedRoute>
-          } />
-          <Route path="/account" element={
-            <ProtectedRoute>
-              <Account />
-            </ProtectedRoute>
-          } />
-          <Route path="/order" element={
-            <ProtectedRoute>
-              <Order />
-            </ProtectedRoute>
-          } />
+          <Route
+            path="/homepage"
+            element={
+              <ProtectedRoute>
+                <HomePage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/cart"
+            element={
+              <ProtectedRoute>
+                <Cart />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/wishList"
+            element={
+              <ProtectedRoute>
+                <WishList />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/checkout/:total/:orderId"
+            element={
+              <ProtectedRoute>
+                <CheckOut />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/productdetails/:id/"
+            element={
+              <ProtectedRoute>
+                <ProductDetails />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/account"
+            element={
+              <ProtectedRoute>
+                <Account />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/order"
+            element={
+              <ProtectedRoute>
+                <Order />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/about"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/contact"
+            element={
+              <ProtectedRoute>
+                <Contact />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/error" element={<Error />} />
           <Route path="*" element={<Navigate to="/error" />} />
         </Routes>

@@ -16,10 +16,10 @@ const Header = () => {
           <a href="" onClick={() => navigate("/homepage")}>
             Home
           </a>
-          <a href="" onClick={() => navigate("")}>
+          <a href="" onClick={() => navigate("/contact")}>
             Contact
           </a>
-          <a href="" onClick={() => navigate("")}>
+          <a href="" onClick={() => navigate("about")}>
             About
           </a>
           <a href="" onClick={() => navigate("/signup")}>

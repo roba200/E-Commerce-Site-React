@@ -9,7 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { useNavigate } from "react-router-dom";
-import { Footer } from "flowbite-react";
+import Footer from "../../components/Footer/Footer";
 
 function HomePage() {
   const [flashsales, setFlashSales] = useState([]);
@@ -252,6 +252,7 @@ function HomePage() {
         <div className="h-[100px]"></div>
       </div>
       <ToastContainer />
+      <Footer />
     </div>
   );
 }
