@@ -3,7 +3,7 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import "./Cart.css";
 import WhiteButton from "../../components/WhiteButton/WhiteButton";
-import Redbutton from "../../components/RedButton/Redbutton";
+import Redbutton from "../../components/RedButton/RedButton";
 import StripeCheckout from "react-stripe-checkout";
 import { useNavigate } from 'react-router-dom';
 
@@ -20,7 +20,7 @@ function Cart() {
   const fetchCartItems = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8080/api/carts/user/${localStorage.getItem("userId")}`
+        `https://e-commerce-site-spring-boot-production.up.railway.app/api/carts/user/${localStorage.getItem("userId")}`
       );
       const data = await response.json();
       console.log("Cart data:", data);
@@ -37,7 +37,7 @@ function Cart() {
       const products = [];
       for (const id of productIds) {
         const response = await fetch(
-          `http://localhost:8080/api/products/${id}`
+          `https://e-commerce-site-spring-boot-production.up.railway.app/api/products/${id}`
         );
         const product = await response.json();
         products.push(product);
@@ -54,7 +54,7 @@ function Cart() {
 
     try {
       const response = await fetch(
-        `http://localhost:8080/api/carts/update/${localStorage.getItem(
+        `https://e-commerce-site-spring-boot-production.up.railway.app/api/carts/update/${localStorage.getItem(
           "userId"
         )}/${productId}/${newQuantity}`,
         {
@@ -78,7 +78,7 @@ function Cart() {
   const deleteCartItem = async (productId) => {
     try {
       const response = await fetch(
-        `http://localhost:8080/api/carts/remove/${localStorage.getItem("userId")}/${productId}`,
+        `https://e-commerce-site-spring-boot-production.up.railway.app/api/carts/remove/${localStorage.getItem("userId")}/${productId}`,
         {
           method: "DELETE",
         }
@@ -103,7 +103,7 @@ function Cart() {
         status: "pending"
       };
 
-      const response = await fetch('http://localhost:8080/api/orders', {
+      const response = await fetch('https://e-commerce-site-spring-boot-production.up.railway.app/api/orders', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

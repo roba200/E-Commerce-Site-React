@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import Redbutton from "../../components/RedButton/Redbutton";
+import Redbutton from "../../components/RedButton/RedButton";
 import "./LogIn.css";
 import axios from "axios";
 
@@ -15,7 +15,7 @@ function LogIn({ setIsLoggedIn }) {
     setError('');
 
     try {
-        const response = await axios.post('http://localhost:8080/api/auth/login', {
+        const response = await axios.post('https://e-commerce-site-spring-boot-production.up.railway.app/api/auth/login', {
             'email': email,
             'passwordHash': password,
         });

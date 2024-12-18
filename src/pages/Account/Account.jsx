@@ -27,7 +27,7 @@ function Account() {
     const fetchUserData = async () => {
       try {
         const userId = localStorage.getItem("userId"); // You might want to get this from context/auth state
-        const response = await fetch(`http://localhost:8080/api/auth/user/${userId}`);
+        const response = await fetch(`https://e-commerce-site-spring-boot-production.up.railway.app/api/auth/user/${userId}`);
         const data = await response.json();
         setUserData(data);
       } catch (error) {
@@ -52,7 +52,7 @@ function Account() {
         }
 
         // Verify current password
-        const verifyResponse = await fetch(`http://localhost:8080/api/auth/verify-password/${userId}`, {
+        const verifyResponse = await fetch(`https://e-commerce-site-spring-boot-production.up.railway.app/api/auth/verify-password/${userId}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -79,7 +79,7 @@ function Account() {
         updateData.passwordHash = passwords.newPassword;
       }
 
-      const response = await fetch(`http://localhost:8080/api/auth/profile/${userId}`, {
+      const response = await fetch(`https://e-commerce-site-spring-boot-production.up.railway.app/auth/profile/${userId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

@@ -35,7 +35,7 @@ const Profile = () => {
   const fetchUserData = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8080/api/auth/user/${localStorage.getItem("userId")}`
+        `https://e-commerce-site-spring-boot-production.up.railway.app/api/auth/user/${localStorage.getItem("userId")}`
       );
       const data = await response.json();
       setUserData(data);

@@ -3,7 +3,7 @@ import CryptoJS from 'crypto-js';
 import "./CheckOut.css";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import Redbutton from "../../components/RedButton/Redbutton";
+import Redbutton from "../../components/RedButton/RedButton";
 import { useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -24,7 +24,7 @@ function CheckOut() {
   const deleteCartUser = async (userId) => {
     try {
       const response = await fetch(
-        `http://localhost:8080/api/carts/user/${userId}`,
+        `https://e-commerce-site-spring-boot-production.up.railway.app/carts/user/${userId}`,
         {
           method: "DELETE"
         }
@@ -42,7 +42,7 @@ function CheckOut() {
   const setStatusOrder = async (status) => {
     try {
       const response = await fetch(
-        `http://localhost:8080/api/orders/${orderId}/${status}`,
+        `https://e-commerce-site-spring-boot-production.up.railway.app/api/orders/${orderId}/${status}`,
         {
           method: "PUT"
         }
