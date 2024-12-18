@@ -46,7 +46,7 @@ function HomePage() {
 
   const fetchFlashSales = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/api/flashsales`);
+      const response = await fetch(`https://e-commerce-site-spring-boot-production.up.railway.app/api/flashsales`);
       const data = await response.json();
       const validFlashSales = data.filter((sale) =>
         isFlashSaleValid(sale.startDate, sale.endDate)
@@ -73,7 +73,7 @@ function HomePage() {
       const products = [];
       for (const id of productIds) {
         const response = await fetch(
-          `http://localhost:8080/api/products/${id}`
+          `https://e-commerce-site-spring-boot-production.up.railway.app/api/products/${id}`
         );
         const product = await response.json();
         products.push(product);
@@ -89,7 +89,7 @@ function HomePage() {
   const addToCart = async (productId) => {
     try {
       const response = await fetch(
-        `http://localhost:8080/api/carts/add/${localStorage.getItem(
+        `https://e-commerce-site-spring-boot-production.up.railway.app/api/carts/add/${localStorage.getItem(
           "userId"
         )}/${productId}/1`,
         { method: "POST" }

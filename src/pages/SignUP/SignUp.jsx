@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import Redbutton from "../../components/RedButton/Redbutton";
+import Redbutton from "../../components/RedButton/RedButton";
 import "./SignUp.css";
 import axios from "axios";
 
@@ -17,7 +17,7 @@ function SignUp() {
     setError("");
 
     try {
-      await axios.post("http://localhost:8080/api/auth/register", {
+      await axios.post("https://e-commerce-site-spring-boot-production.up.railway.app/api/auth/register", {
         firstName: firstName,
         lastName: lastName,
         email: email,

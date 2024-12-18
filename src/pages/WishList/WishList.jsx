@@ -38,7 +38,7 @@ function WishList() {
   const fetchWishListItems = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8080/api/wishlist/${localStorage.getItem("userId")}`
+        `https://e-commerce-site-spring-boot-production.up.railway.app/api/wishlist/${localStorage.getItem("userId")}`
       );
       const data = await response.json();
       fetchProducts(data.productIds);
@@ -54,7 +54,7 @@ function WishList() {
       const products = [];
       for (const id of productIds) {
         const response = await fetch(
-          `http://localhost:8080/api/products/${id}`
+          `https://e-commerce-site-spring-boot-production.up.railway.app/api/products/${id}`
         );
         const product = await response.json();
         products.push(product);
@@ -70,7 +70,7 @@ function WishList() {
   const removeItemFromWishList = async (productId) => {
     try {
       const response = await fetch(
-        `http://localhost:8080/api/wishlist/remove/${localStorage.getItem(
+        `https://e-commerce-site-spring-boot-production.up.railway.app/api/wishlist/remove/${localStorage.getItem(
           "userId"
         )}/${productId}`,
         { method: "DELETE" }
@@ -86,7 +86,7 @@ function WishList() {
   const addToCart = async (productId) => {
     try {
       const response = await fetch(
-        `http://localhost:8080/api/carts/add/${localStorage.getItem(
+        `https://e-commerce-site-spring-boot-production.up.railway.app/api/carts/add/${localStorage.getItem(
           "userId"
         )}/${productId}/1`,
         { method: "POST" }

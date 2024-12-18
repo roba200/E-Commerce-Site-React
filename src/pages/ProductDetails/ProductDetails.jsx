@@ -17,7 +17,7 @@ function ProductDetails() {
 
   const fetchProductDetails = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/api/products/${id}`);
+      const response = await fetch(`https://e-commerce-site-spring-boot-production.up.railway.app/api/products/${id}`);
       const data = await response.json();
       setProduct(data);
       setSelectedImage(data.imageUrl1);
@@ -29,7 +29,7 @@ function ProductDetails() {
   const getCartItemQuantity = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8080/api/carts/user/${localStorage.getItem("userId")}`,
+        `https://e-commerce-site-spring-boot-production.up.railway.app/api/carts/user/${localStorage.getItem("userId")}`,
         { method: "GET" }
       );
       if (response.ok) {
@@ -51,10 +51,10 @@ function ProductDetails() {
 
       const endpoint =
         currentQuantity > 0
-          ? `http://localhost:8080/api/carts/update/${localStorage.getItem(
+          ? `https://e-commerce-site-spring-boot-production.up.railway.app/api/carts/update/${localStorage.getItem(
               "userId"
             )}/${id}/${newQuantity}`
-          : `http://localhost:8080/api/carts/add/${localStorage.getItem(
+          : `https://e-commerce-site-spring-boot-production.up.railway.app/api/carts/add/${localStorage.getItem(
               "userId"
             )}/${id}/${newQuantity}`;
 
