@@ -79,7 +79,7 @@ function Account() {
         updateData.passwordHash = passwords.newPassword;
       }
 
-      const response = await fetch(`https://e-commerce-site-spring-boot-production.up.railway.app/auth/profile/${userId}`, {
+      const response = await fetch(`https://e-commerce-site-spring-boot-production.up.railway.app/api/auth/profile/${userId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
