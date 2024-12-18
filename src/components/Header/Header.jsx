@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
 import PopoverProfile from "../PopoverProfile/PopoverProfile";
@@ -7,6 +7,13 @@ import MagGlass from "../../../public/mag-glass.png";
 
 const Header = () => {
   const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const user = localStorage.getItem("userId");
+    setIsLoggedIn(!!user);
+  }, []);
+
   return (
     <section className="h-wrapper">
       <div className="h-container">
@@ -19,20 +26,26 @@ const Header = () => {
           <a href="" onClick={() => navigate("/contact")}>
             Contact
           </a>
-          <a href="" onClick={() => navigate("about")}>
+          <a href="" onClick={() => navigate("/about")}>
             About
           </a>
-          <a href="" onClick={() => navigate("/signup")}>
-            Sign Up
-          </a>
+          
+          {!isLoggedIn && (
+            <a href="" onClick={() => navigate("/signup")}>
+              Sign Up
+            </a>
+          )}
         </div>
-        <div className="flex">
-          <div className="search-input">
-            <input type="text" placeholder="What are you looking for?" />
-            <img src={MagGlass} alt="search" className="magnifying-glass" />
+        
+        {isLoggedIn && (
+          <div className="flex">
+            <div className="search-input">
+              <input type="text" placeholder="What are you looking for?" />
+              <img src={MagGlass} alt="search" className="magnifying-glass" />
+            </div>
+            <PopoverProfile />
           </div>
-          <PopoverProfile />
-        </div>
+        )}
       </div>
       <div className="line"></div>
     </section>

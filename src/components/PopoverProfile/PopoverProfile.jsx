@@ -9,7 +9,7 @@ const PopoverProfile = () => {
         // Add logout logic here
         localStorage.removeItem("userId");
         localStorage.removeItem('token');
-        navigate('/');
+        window.location.reload();
     };
 
     return (
