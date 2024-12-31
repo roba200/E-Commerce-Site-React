@@ -14,9 +14,12 @@ import Footer from "../../components/Footer/Footer";
 function HomePage() {
   const [flashsales, setFlashSales] = useState([]);
   const [discountedPrices, setDiscountedPrices] = useState({});
+  const [regularProducts, setRegularProducts] = useState([]);
   const navigate = useNavigate();
+  
   useEffect(() => {
     fetchFlashSales();
+    fetchRegularProducts();
   }, []);
 
   const showCartAddtMessage = () => {
@@ -82,6 +85,19 @@ function HomePage() {
       setFlashSales(products);
     } catch (error) {
       console.error("Error fetching products:", error);
+      showErrorMessage();
+    }
+  };
+
+  const fetchRegularProducts = async () => {
+    try {
+      const response = await fetch(
+        'https://e-commerce-site-spring-boot-production.up.railway.app/api/products'
+      );
+      const data = await response.json();
+      setRegularProducts(data);
+    } catch (error) {
+      console.error("Error fetching regular products:", error);
       showErrorMessage();
     }
   };
@@ -245,6 +261,32 @@ function HomePage() {
                   {category.name}
                 </h3>
               </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Regular Products Section */}
+        <div className="mt-20">
+          <div className="flex items-center">
+            <div className="h-[40px] w-[20px] bg-[#DB4444] rounded-[4px]"></div>
+            <div className="pl-3 text-[#DB4444] font-semibold">Our Products</div>
+          </div>
+          <h2 className="text-2xl font-bold mt-4 mb-8">Explore Our Products</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {regularProducts.map((product) => (
+              <WishListItemReview
+              discount={Math.round(
+                ((product.price - product.discountedPrice) / product.price) *
+                  100
+              ) + "%"}
+                wasPrice={product.price}
+                itemName={product.name}
+                nowPrice={product.discountedPrice}
+                image={product.imageUrl1}
+                rating={product.rating}
+                onAddToCartClick={() => addToCart(product.id)}
+                onClick={() => navigate(`/productdetails/${product.id}`)}
+              />
             ))}
           </div>
         </div>
