@@ -29,7 +29,17 @@ function Account() {
         const userId = localStorage.getItem("userId"); // You might want to get this from context/auth state
         const response = await fetch(`https://e-commerce-site-spring-boot-production.up.railway.app/api/auth/user/${userId}`);
         const data = await response.json();
-        setUserData(data);
+        // Ensure address object exists
+        setUserData({
+          ...data,
+          address: data.address || {
+            street: "",
+            city: "",
+            state: "",
+            country: "",
+            postalCode: ""
+          }
+        });
       } catch (error) {
         console.error("Error fetching user data:", error);
       }

@@ -39,12 +39,17 @@ const Profile = () => {
       );
       const data = await response.json();
       setUserData(data);
+      console.log(data);
     } catch (error) {
       showErrorMessage(error);
     }
   };
 
   const formatAddress = (address) => {
+    if (!address) {
+      return "No address provided";
+    }
+
     const parts = [
       address.street,
       address.city,

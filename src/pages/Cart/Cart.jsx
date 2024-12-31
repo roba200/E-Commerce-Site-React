@@ -11,6 +11,8 @@ function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const [total, setTotal] = useState(0);
   const [productQuantities, setProductQuantities] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+  const [isUpdating, setIsUpdating] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,6 +20,7 @@ function Cart() {
   }, []);
 
   const fetchCartItems = async () => {
+    setIsLoading(true);
     try {
       const response = await fetch(
         `https://e-commerce-site-spring-boot-production.up.railway.app/api/carts/user/${localStorage.getItem("userId")}`
@@ -29,6 +32,8 @@ function Cart() {
       setTotal(data.totalPrice);
     } catch (error) {
       console.error("Error fetching cart items:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -51,7 +56,7 @@ function Cart() {
 
   const handleQuantityChange = async (productId, newQuantity) => {
     if (newQuantity < 1) return;
-
+    setIsUpdating(true);
     try {
       const response = await fetch(
         `https://e-commerce-site-spring-boot-production.up.railway.app/api/carts/update/${localStorage.getItem(
@@ -72,6 +77,8 @@ function Cart() {
       }
     } catch (error) {
       console.error("Error updating quantity:", error);
+    } finally {
+      setIsUpdating(false);
     }
   };
 
@@ -128,55 +135,70 @@ function Cart() {
       <Header />
       <div className="Roadmap">Home / Cart</div>
       <div className="cart-container">
-        <div className="cartMain">
-          <div className="cartMain_row">
-            <div>
-              <p>Product</p>
-            </div>
-            <div>
-              <p>Price</p>
-            </div>
-            <div>
-              <p>Quantity</p>
-            </div>
-            <div>
-              <p>Subtotal</p>
-            </div>
+        {isLoading ? (
+          <div className="min-h-[400px] flex items-center justify-center">
+            <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-red-500"></div>
           </div>
-          {cartItems.map((item) => (
-            <div className="cartMain_row" key={item._id}>
-              <div className="product">
-                <img
-                  src={item.imageUrl1}
-                  alt={item.name}
-                  height={100}
-                  width={100}
-                />
-                {item.name}
+        ) : cartItems.length === 0 ? (
+          <div className="min-h-[200px] flex items-center justify-center">
+            <p className="text-xl text-gray-500">Your cart is empty</p>
+          </div>
+        ) : (
+          <div className="cartMain">
+            <div className="cartMain_row">
+              <div>
+                <p>Product</p>
               </div>
-              <div className="price">${item.price}</div>
-              <div className="quantity">
-                <input
-                  type="number"
-                  value={productQuantities[item.id]}
-                  onChange={(e) =>
-                    handleQuantityChange(item.id, parseInt(e.target.value))
-                  }
-                  min="1"
-                />
+              <div>
+                <p>Price</p>
               </div>
-              <div className="subtotal">
-                ${item.price * productQuantities[item.id]}
-                <button 
-                  className="delete-button"
-                  onClick={() => deleteCartItem(item.id)}
-                >
-                  ×
-                </button>
+              <div>
+                <p>Quantity</p>
+              </div>
+              <div>
+                <p>Subtotal</p>
               </div>
             </div>
-          ))}
-        </div>
+            {cartItems.map((item) => (
+              <div className="cartMain_row" key={item._id}>
+                <div className="product">
+                  <img
+                    src={item.imageUrl1}
+                    alt={item.name}
+                    height={100}
+                    width={100}
+                  />
+                  {item.name}
+                </div>
+                <div className="price">${item.price}</div>
+                <div className="quantity">
+                  <input
+                    type="number"
+                    value={productQuantities[item.id]}
+                    onChange={(e) =>
+                      handleQuantityChange(item.id, parseInt(e.target.value))
+                    }
+                    min="1"
+                  />
+                </div>
+                <div className="subtotal">
+                  ${item.price * productQuantities[item.id]}
+                  <button 
+                    className="delete-button"
+                    onClick={() => deleteCartItem(item.id)}
+                  >
+                    ×
+                  </button>
+                </div>
+              </div>
+            ))}
+            {isUpdating && (
+              <div className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div>
+              </div>
+            )}
+          </div>
+        )}
         <div className="item-button">
           <div className="item-button-return">
             <WhiteButton text="Return To Shop"></WhiteButton>

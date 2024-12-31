@@ -208,27 +208,33 @@ function HomePage() {
             <div className="pl-3 text-[#DB4444] font-semibold">Flash Sales</div>
           </div>
           <div className="pt-8">
-            <div className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide">
-              {flashsales.map((item, index) => (
-                <WishListItemReview
-                  key={item.id}
-                  discount={
-                    Math.round(
-                      ((item.price - discountedPrices[item.id]) / item.price) *
-                        100
-                    ) + "%"
-                  }
-                  itemName={item.name}
-                  nowPrice={discountedPrices[item.id]}
-                  wasPrice={item.price}
-                  image={item.imageUrl1}
-                  count="65"
-                  rating={item.rating}
-                  onAddToCartClick={() => addToCart(item.id)}
-                  onClick={() => navigate(`/productdetails/${item.id}`)}
-                ></WishListItemReview>
-              ))}
-            </div>
+            {flashsales.length > 0 ? (
+              <div className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide">
+                {flashsales.map((item, index) => (
+                  <WishListItemReview
+                    key={item.id}
+                    discount={
+                      Math.round(
+                        ((item.price - discountedPrices[item.id]) / item.price) *
+                          100
+                      ) + "%"
+                    }
+                    itemName={item.name}
+                    nowPrice={discountedPrices[item.id]}
+                    wasPrice={item.price}
+                    image={item.imageUrl1}
+                    count="65"
+                    rating={item.rating}
+                    onAddToCartClick={() => addToCart(item.id)}
+                    onClick={() => navigate(`/productdetails/${item.id}`)}
+                  ></WishListItemReview>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-8 text-gray-600 text-lg">
+                No Flash Sales Available at the moment
+              </div>
+            )}
           </div>
         </div>
 
