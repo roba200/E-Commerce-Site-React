@@ -11,6 +11,8 @@ import { useNavigate } from "react-router-dom";
 function WishList() {
   const [wishListItems, setWishListItems] = useState([]);
   const [isPopupOpen, setPopupOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isUpdating, setIsUpdating] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -36,9 +38,12 @@ function WishList() {
   };
 
   const fetchWishListItems = async () => {
+    setIsLoading(true);
     try {
       const response = await fetch(
-        `https://e-commerce-site-spring-boot-production.up.railway.app/api/wishlist/${localStorage.getItem("userId")}`
+        `https://e-commerce-site-spring-boot-production.up.railway.app/api/wishlist/${localStorage.getItem(
+          "userId"
+        )}`
       );
       const data = await response.json();
       fetchProducts(data.productIds);
@@ -46,6 +51,8 @@ function WishList() {
     } catch (error) {
       console.error("Error fetching wishlist items:", error);
       showErrorMessage();
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -68,6 +75,7 @@ function WishList() {
   };
 
   const removeItemFromWishList = async (productId) => {
+    setIsUpdating(true);
     try {
       const response = await fetch(
         `https://e-commerce-site-spring-boot-production.up.railway.app/api/wishlist/remove/${localStorage.getItem(
@@ -80,10 +88,13 @@ function WishList() {
     } catch (error) {
       console.error("Error fetching wishlist items:", error);
       showErrorMessage();
+    } finally {
+      setIsUpdating(false);
     }
   };
 
   const addToCart = async (productId) => {
+    setIsUpdating(true);
     try {
       const response = await fetch(
         `https://e-commerce-site-spring-boot-production.up.railway.app/api/carts/add/${localStorage.getItem(
@@ -96,6 +107,8 @@ function WishList() {
     } catch (error) {
       console.error("Error adding to cart items:", error);
       showErrorMessage();
+    } finally {
+      setIsUpdating(false);
     }
   };
 
@@ -110,97 +123,47 @@ function WishList() {
             <h1 className="text-xl lg:text-2xl font-medium">
               Wishlist ({wishListItems.length} items)
             </h1>
-            <WhiteButton text="Move to Bag" />
+            <WhiteButton text="Move to Bag" onClick = {()=> navigate("/cart")}/>
           </div>
 
           {/* Wishlist Items */}
           <div className="px-4 lg:px-[135px]">
-            <div className="flex gap-4 overflow-x-auto pb-4 hide-scrollbar">
-              {wishListItems.map((item) => (
-                <WishListItem
-                  key={item.id}
-                  discount="-29%"
-                  itemName={item.name}
-                  nowPrice={item.price}
-                  wasPrice={item.price}
-                  image={item.imageUrl1}
-                  onDeleteClick={() =>
-                    removeItemFromWishList(item.id).then(() => fetchWishListItems())
-                  }
-                  onAddToCartClick={() => addToCart(item.id)}
-                  onClick={() => navigate(`/productdetails/${item.id}`)}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* Just For You Section */}
-          <div className="flex justify-between items-center px-4 lg:px-[135px] pt-[88px]">
-            <div className="flex items-center">
-              <div className="h-10 w-5 bg-[#DB4444] rounded"></div>
-              <h2 className="pl-3 text-lg font-medium">Just For You</h2>
-            </div>
-            <WhiteButton text="See All" />
-          </div>
-
-          {/* Review Items */}
-          <div className="px-4 lg:px-[135px] pt-[68px] pb-[140px]">
-            <div className="flex gap-4 overflow-x-auto pb-4 hide-scrollbar">
-              <WishListItemReview
-                discount="-29%"
-                itemName="Gucci duffle bag"
-                nowPrice="$20"
-                wasPrice="$50"
-                image="./bag.png"
-                rating={0}
-                count="65"
-              />
-              <WishListItemReview
-                discount="-29%"
-                itemName="Gucci duffle bag"
-                nowPrice="$20"
-                wasPrice="$50"
-                image="./bag.png"
-                rating={0}
-                count="65"
-              />
-              <WishListItemReview
-                discount="-29%"
-                itemName="Gucci duffle bag"
-                nowPrice="$20"
-                wasPrice="$50"
-                image="./bag.png"
-                rating={0}
-                count="65"
-              />
-              <WishListItemReview
-                discount="-29%"
-                itemName="Gucci duffle bag"
-                nowPrice="$20"
-                wasPrice="$50"
-                image="./bag.png"
-                rating={0}
-                count="65"
-              />
-              <WishListItemReview
-                discount="-29%"
-                itemName="Gucci duffle bag"
-                nowPrice="$20"
-                wasPrice="$50"
-                image="./bag.png"
-                rating={0}
-                count="65"
-              />
-              <WishListItemReview
-                discount="-29%"
-                itemName="Gucci duffle bag"
-                nowPrice="$20"
-                wasPrice="$50"
-                image="./bag.png"
-                rating={0}
-                count="65"
-              />
-            </div>
+            {isLoading ? (
+              <div className="min-h-[400px] flex items-center justify-center">
+                <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-red-500"></div>
+              </div>
+            ) : wishListItems.length > 0 ? (
+              <>
+                <div className="flex gap-4 overflow-x-auto pb-4 hide-scrollbar">
+                  {wishListItems.map((item) => (
+                    <WishListItem
+                      key={item.id}
+                      discount="-29%"
+                      itemName={item.name}
+                      nowPrice={item.price}
+                      wasPrice={item.price}
+                      image={item.imageUrl1}
+                      onDeleteClick={() =>
+                        removeItemFromWishList(item.id).then(() =>
+                          fetchWishListItems()
+                        )
+                      }
+                      onAddToCartClick={() => addToCart(item.id)}
+                      onClick={() => navigate(`/productdetails/${item.id}`)}
+                    />
+                  ))}
+                </div>
+                {isUpdating && (
+                  <div className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
+                    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div>
+                  </div>
+                )}
+              </>
+            ) : (
+              <div className="text-center py-16 text-gray-600 text-lg">
+                Your wishlist is empty
+              </div>
+            )}
           </div>
         </div>
       </main>

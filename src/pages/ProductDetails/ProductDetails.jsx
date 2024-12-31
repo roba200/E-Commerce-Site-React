@@ -17,7 +17,9 @@ function ProductDetails() {
 
   const fetchProductDetails = async () => {
     try {
-      const response = await fetch(`https://e-commerce-site-spring-boot-production.up.railway.app/api/products/${id}`);
+      const response = await fetch(
+        `https://e-commerce-site-spring-boot-production.up.railway.app/api/products/${id}`
+      );
       const data = await response.json();
       setProduct(data);
       setSelectedImage(data.imageUrl1);
@@ -29,7 +31,9 @@ function ProductDetails() {
   const getCartItemQuantity = async () => {
     try {
       const response = await fetch(
-        `https://e-commerce-site-spring-boot-production.up.railway.app/api/carts/user/${localStorage.getItem("userId")}`,
+        `https://e-commerce-site-spring-boot-production.up.railway.app/api/carts/user/${localStorage.getItem(
+          "userId"
+        )}`,
         { method: "GET" }
       );
       if (response.ok) {
@@ -84,8 +88,32 @@ function ProductDetails() {
     }
   };
 
+  const addToWishlist = async () => {
+    try {
+      const response = await fetch(
+        `https://e-commerce-site-spring-boot-production.up.railway.app/api/wishlist/add/${localStorage.getItem(
+          "userId"
+        )}/${id}`,
+        { method: "POST" }
+      );
+      if (response.ok) {
+        toast.success("Product added to wishlist!");
+      }else{
+        toast.info("Product already in wishlist!");
+      }
+      return 0;
+    } catch (error) {
+      toast.error("Error adding to wishlist");
+      return 0;
+    }
+  };
+
   if (!product) {
-    return <div>Loading...</div>;
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-red-500"></div>
+      </div>
+    );
   }
 
   return (
@@ -175,6 +203,12 @@ function ProductDetails() {
                 className="bg-red-500 text-white px-6 py-2 rounded-md hover:bg-red-600 transition-colors"
               >
                 Add to Cart
+              </button>
+              <button
+                onClick={() => addToWishlist()}
+                className="bg-green-500 text-white px-6 py-2 rounded-md hover:bg-green-600 transition-colors"
+              >
+                Add to Wish List
               </button>
             </div>
 
