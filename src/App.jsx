@@ -21,6 +21,7 @@ import Profile from "./pages/Profile/Profile";
 import Contact from "./pages/Contact/Contact";
 import About from "./pages/About/About";
 import Category from "./pages/Category/Category";
+import Search from "./pages/Search/Search";
 
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem("token");
@@ -159,6 +160,15 @@ function App() {
             element={
               <ProtectedRoute>
                 <Category />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/search/:name"
+            element={
+              <ProtectedRoute>
+                <Search />
               </ProtectedRoute>
             }
           />
