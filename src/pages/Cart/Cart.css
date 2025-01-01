@@ -67,6 +67,7 @@
 .item-button {
     display: flex;
     justify-content: space-between;
+    visibility: hidden;
 
 }
 
@@ -89,6 +90,7 @@
 
 .coupon {
     display: flex;
+    visibility: hidden;
 }
 
 .coupon-box {
