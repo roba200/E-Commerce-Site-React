@@ -6,6 +6,7 @@ import Logo from "../../../public/logo.png";
 import MagGlass from "../../../public/mag-glass.png";
 
 const Header = () => {
+  const [text, setText] = useState("");
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -40,8 +41,8 @@ const Header = () => {
         {isLoggedIn && (
           <div className="flex">
             <div className="search-input">
-              <input type="text" placeholder="What are you looking for?" />
-              <img src={MagGlass} alt="search" className="magnifying-glass" />
+              <input type="text" placeholder="What are you looking for?" onChange={(e) => setText(e.target.value)}/>
+              <img src={MagGlass} alt="search" className="magnifying-glass" onClick={()=> navigate(`/search/${text}`)} />
             </div>
             <PopoverProfile />
           </div>
