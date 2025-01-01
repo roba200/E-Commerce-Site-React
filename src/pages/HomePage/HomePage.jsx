@@ -252,7 +252,7 @@ function HomePage() {
                 className="group bg-white p-6 rounded-lg shadow-sm hover:shadow-md 
                   border border-transparent hover:border-[#DB4444] cursor-pointer 
                   transition-all duration-300 flex flex-col items-center justify-center"
-                onClick={() => navigate(`/category/${category.name.toLowerCase()}`)}
+                onClick={() => navigate(`/category/${category.name}`)}
               >
                 <div className="w-16 h-16 rounded-full bg-gray-50 flex items-center justify-center 
                   group-hover:bg-red-50 transition-colors duration-300">
