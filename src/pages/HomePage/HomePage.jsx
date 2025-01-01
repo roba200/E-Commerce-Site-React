@@ -122,51 +122,51 @@ function HomePage() {
     {
       id: 1,
       name: "Electronics",
-      image: "../../public/electronic.png",
+      image: "/electronic.png",
     },
 
     {
       id: 2,
       name: "Computers",
-      image: "../../public/computer.png",
+      image: "/computer.png",
     },
     {
       id: 3,
       name: "Home & Kitchen",
-      image: "../../public/home.png",
+      image: "/home.png",
     },
     {
       id: 4,
       name: "Home Appliances",
-      image: "../../public/home-app.png",
+      image: "/home-app.png",
     },
 
     {
       id: 5,
       name: "Bar & Wine",
-      image: "../../public/wine.png",
+      image: "/wine.png",
     },
     {
       id: 6,
       name: "Fashion",
-      image: "../../public/fashion.png",
+      image: "/fashion.png",
     },
     {
       id: 7,
       name: "Office Furniture",
-      image: "../../public/furniture.png",
+      image: "/furniture.png",
     },
 
     {
       id: 8,
       name: "Health & Beauty",
-      image: "../../public/beauty.png",
+      image: "/beauty.png",
     },
 
     {
       id: 9,
       name: "Sports & Outdoors",
-      image: "../../public/sports.png",
+      image: "/sports.png",
     },
   ];
 
