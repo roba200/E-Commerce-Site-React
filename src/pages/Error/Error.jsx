@@ -1,5 +1,5 @@
 import React from 'react';
-import "./error.css";
+import "./Error.css";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import RedButton from "../../components/RedButton/RedButton";
