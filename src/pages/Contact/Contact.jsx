@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./Contact.css";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import Redbutton from "../../components/RedButton/Redbutton"
+import Redbutton from "../../components/RedButton/RedButton"
 
 function Contact() {
     return (
