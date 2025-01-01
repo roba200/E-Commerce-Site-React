@@ -204,7 +204,7 @@ function HomePage() {
               className="rounded-lg shadow-md"
             >
               <SwiperSlide>
-                <img src="../../../public/Frame 560.png" alt="" srcset="" />
+                <img src="/Frame 560.png" alt="" srcset="" />
               </SwiperSlide>
               <SwiperSlide>Slide 2</SwiperSlide>
               <SwiperSlide>Slide 3</SwiperSlide>
