@@ -37,7 +37,7 @@ const WishListItemReview = ({
         className="h-[41px] w-[270px] bg-[#000000] flex justify-center items-center gap-2 hover:bg-gray-800 transition-colors"
         onClick={onAddToCartClick}
       >
-        <img src="Cart1.png" alt="Cart" className="w-5 h-5" />
+        <img src="/Cart1.png" alt="Cart" className="w-5 h-5" />
         <span className="text-[#fafafa] text-[12px]">Add to Cart</span>
       </button>
 
@@ -54,7 +54,7 @@ const WishListItemReview = ({
       </div>
       <div className="flex items-center gap-1">
         {[...Array(Math.round(rating))].map((_, index) => (
-          <img key={index} src="star.png" alt="star" className="w-4 h-4" />
+          <img key={index} src="/star.png" alt="star" className="w-4 h-4" />
         ))}
         <span className="pl-3">({count})</span>
       </div>

@@ -20,6 +20,7 @@ import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import Profile from "./pages/Profile/Profile";
 import Contact from "./pages/Contact/Contact";
 import About from "./pages/About/About";
+import Category from "./pages/Category/Category";
 
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem("token");
@@ -149,6 +150,15 @@ function App() {
             element={
               <ProtectedRoute>
                 <Contact />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/category/:name"
+            element={
+              <ProtectedRoute>
+                <Category />
               </ProtectedRoute>
             }
           />

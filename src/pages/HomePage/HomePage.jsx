@@ -127,29 +127,46 @@ function HomePage() {
 
     {
       id: 2,
-      name: "Clothes",
-      image: "../../public/clothes.png",
+      name: "Computers",
+      image: "../../public/computer.png",
     },
     {
       id: 3,
-      name: "Shoes",
-      image: "../../public/shoes.png",
+      name: "Home & Kitchen",
+      image: "../../public/home.png",
     },
     {
-      id: 1,
-      name: "Electronics",
-      image: "../../public/electronic.png",
+      id: 4,
+      name: "Home Appliances",
+      image: "../../public/home-app.png",
     },
 
     {
-      id: 2,
-      name: "Clothes",
-      image: "../../public/clothes.png",
+      id: 5,
+      name: "Bar & Wine",
+      image: "../../public/wine.png",
     },
     {
-      id: 3,
-      name: "Shoes",
-      image: "../../public/shoes.png",
+      id: 6,
+      name: "Fashion",
+      image: "../../public/fashion.png",
+    },
+    {
+      id: 7,
+      name: "Office Furniture",
+      image: "../../public/furniture.png",
+    },
+
+    {
+      id: 8,
+      name: "Health & Beauty",
+      image: "../../public/beauty.png",
+    },
+
+    {
+      id: 9,
+      name: "Sports & Outdoors",
+      image: "../../public/sports.png",
     },
   ];
 
@@ -252,7 +269,7 @@ function HomePage() {
                 className="group bg-white p-6 rounded-lg shadow-sm hover:shadow-md 
                   border border-transparent hover:border-[#DB4444] cursor-pointer 
                   transition-all duration-300 flex flex-col items-center justify-center"
-                onClick={() => navigate(`/category/${category.name.toLowerCase()}`)}
+                onClick={() => navigate(`/category/${category.name}`)}
               >
                 <div className="w-16 h-16 rounded-full bg-gray-50 flex items-center justify-center 
                   group-hover:bg-red-50 transition-colors duration-300">
@@ -263,7 +280,7 @@ function HomePage() {
                   />
                 </div>
                 <h3 className="text-base font-medium mt-4 group-hover:text-[#DB4444] 
-                  transition-colors duration-300">
+                  transition-colors duration-300 text-center">
                   {category.name}
                 </h3>
               </div>

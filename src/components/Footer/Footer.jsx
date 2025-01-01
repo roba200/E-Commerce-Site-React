@@ -13,7 +13,7 @@ function Footer() {
             <li>
               <div className="email-input">
                 <input type="text" placeholder="What are you looking for?" />
-                <img src="./send.png" alt="" className="send-btn" />
+                <img src="/send.png" alt="" className="send-btn" />
               </div>
             </li>
           </ul>
@@ -61,23 +61,23 @@ function Footer() {
               <table>
                 <tr>
                   <td rowSpan={2}>
-                    <img src="./qrcode.png" alt="" srcset="" />
+                    <img src="/qrcode.png" alt="" srcset="" />
                   </td>
                   <td>
-                    <img src="./googleplay.png" alt="" srcset="" />
+                    <img src="/googleplay.png" alt="" srcset="" />
                   </td>
                 </tr>
                
                 <td>
-                  <img src="./appstore.png" alt="" srcset="" />
+                  <img src="/appstore.png" alt="" srcset="" />
                 </td>
               </table>
             </li>
             <li className="social-panel">
-                <img src="./Icon-Facebook.png" alt="logo" srcset="" />
-                <img src="./icon-instagram.png" alt="logo" srcset="" />
-                <img src="./Icon-Twitter.png" alt="logo" srcset="" />
-                <img src="./Icon-Linkedin.png" alt="logo" srcset="" />
+                <img src="/Icon-Facebook.png" alt="logo" srcset="" />
+                <img src="/icon-instagram.png" alt="logo" srcset="" />
+                <img src="/Icon-Twitter.png" alt="logo" srcset="" />
+                <img src="/Icon-Linkedin.png" alt="logo" srcset="" />
             </li>
           </ul>
         </div>
