@@ -22,7 +22,7 @@ function Contact() {
             <div className="detail">
                 <div className="contact">
                     <div className="call">
-                        <div className="heading"><img src="../../public/icons-phone.png" alt="" />
+                        <div className="heading"><img src="/icons-phone.png" alt="" />
                             <b>Call To Us</b>
                         </div>
                         <br />
@@ -32,7 +32,7 @@ function Contact() {
                     </div>
 
                     <div className="mail">
-                        <div className="heading"><img src="../../public/icons-mail.png" alt="" />
+                        <div className="heading"><img src="/icons-mail.png" alt="" />
                             <b>Write To Us</b>
                         </div>
                         <br />
