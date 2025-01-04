@@ -31,12 +31,12 @@ function About() {
                     </p>
                 </div>
                 <div className="story-img">
-                    <img src="../../public/portrait-two-african-females-holding-shopping-bags-while-reacting-something-their-smartphone 1.png" alt="" />
+                    <img src="/portrait-two-african-females-holding-shopping-bags-while-reacting-something-their-smartphone 1.png" alt="" />
                 </div>
             </div>
             <div className="box-container">
                 <div className="box">
-                    <img src="../../public/Services.png" alt="" />
+                    <img src="/Services.png" alt="" />
                     <b>
                         10.5k
                     </b>
@@ -45,7 +45,7 @@ function About() {
                     </p>
                 </div>
                 <div className="box">
-                    <img src="../../public/Services.png" alt="" />
+                    <img src="Services.png" alt="" />
                     <b>
                         10.5k
                     </b>
@@ -54,7 +54,7 @@ function About() {
                     </p>
                 </div>
                 <div className="box">
-                    <img src="../../public/Services.png" alt="" />
+                    <img src="Services.png" alt="" />
                     <b>
                         10.5k
                     </b>
@@ -63,7 +63,7 @@ function About() {
                     </p>
                 </div>
                 <div className="box">
-                    <img src="../../public/Services.png" alt="" />
+                    <img src="Services.png" alt="" />
                     <b>
                         10.5k
                     </b>
@@ -75,68 +75,68 @@ function About() {
             <div className="team-container">
                 <div className="team-box">
                     <div className="team-img">
-                        <img src="../../public/image 46.png" alt="" />
+                        <img src="/image 46.png" alt="" />
                     </div>
                     <div className="team-details">
                         <b>Tom Cruise</b>
                         <p>Founder & Chairman</p>
                         <div className="social-media">
-                            <img src="../../public/Icon-Twitter.png" alt="" />
-                            <img src="../../public/Icon-instagram.png" alt="" />
-                            <img src="../../public/Icon-Linkedin.png" alt="" />
+                            <img src="/Icon-Twitter.png" alt="" />
+                            <img src="/icon-instagram.png" alt="" />
+                            <img src="/Icon-Linkedin.png" alt="" />
                         </div>
                     </div>
                 </div>
                 <div className="team-box">
                     <div className="team-img">
-                        <img src="../../public/image 51.png" alt="" />
+                        <img src="/image 51.png" alt="" />
                     </div>
                     <div className="team-details">
                         <b>Tom Cruise</b>
                         <p>Founder & Chairman</p>
                         <div className="social-media">
-                            <img src="../../public/Icon-Twitter.png" alt="" />
-                            <img src="../../public/Icon-instagram.png" alt="" />
-                            <img src="../../public/Icon-Linkedin.png" alt="" />
+                            <img src="/Icon-Twitter.png" alt="" />
+                            <img src="/icon-instagram.png" alt="" />
+                            <img src="/Icon-Linkedin.png" alt="" />
                         </div>
                     </div>
                 </div>
                 <div className="team-box">
                         <div className="team-img">
-                            <img src="../../public/image 47.png" alt="" />
+                            <img src="/image 47.png" alt="" />
                         </div>
                     <div className="team-details">
                         <b>Tom Cruise</b>
                         <p>Founder & Chairman</p>
                         <div className="social-media">
-                            <img src="../../public/Icon-Twitter.png" alt="" />
-                            <img src="../../public/Icon-instagram.png" alt="" />
-                            <img src="../../public/Icon-Linkedin.png" alt="" />
+                            <img src="/Icon-Twitter.png" alt="" />
+                            <img src="/icon-instagram.png" alt="" />
+                            <img src="/Icon-Linkedin.png" alt="" />
                         </div>
                     </div>
                 </div>
             </div>
             <div className="team-navigate">
-                <img src="../../public/Frame 883.png" alt="" />
+                <img src="/Frame 883.png" alt="" />
             </div>
             <div className="features">
                 <div className="feature-container">
                     <div className="feature-img">
-                        <img src="../../public/delivery.png" alt="" />
+                        <img src="/delivery.png" alt="" />
                     </div>
                     <b>Free and Fast Delivery</b>
                     <p>Free delivery for all orders over $140</p>
                 </div>
                 <div className="feature-container">
                     <div className="feature-img">
-                        <img src="../../public/delivery.png" alt="" />
+                        <img src="/delivery.png" alt="" />
                     </div>
                     <b>Free and Fast Delivery</b>
                     <p>Free delivery for all orders over $140</p>
                 </div>
                 <div className="feature-container">
                     <div className="feature-img">
-                        <img src="../../public/delivery.png" alt="" />
+                        <img src="/delivery.png" alt="" />
                     </div>
                     <b>Free and Fast Delivery</b>
                     <p>Free delivery for all orders over $140</p>
