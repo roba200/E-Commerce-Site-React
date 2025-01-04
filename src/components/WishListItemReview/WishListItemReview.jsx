@@ -44,11 +44,11 @@ const WishListItemReview = ({
       <div className="pt-4 font-medium">{itemName}</div>
       <div className="flex gap-4 items-center">
         {nowPrice === null ? (
-          <span className="text-[#DB4444] font-semibold">{wasPrice}</span>
+          <span className="text-[#DB4444] font-semibold">${wasPrice}</span>
         ) : (
           <>
-            <span className="text-[#DB4444] font-semibold">{nowPrice}</span>
-            <span className="text-[#d9d9d9] line-through">{wasPrice}</span>
+            <span className="text-[#DB4444] font-semibold">${nowPrice}</span>
+            <span className="text-[#d9d9d9] line-through">${wasPrice}</span>
           </>
         )}
       </div>
