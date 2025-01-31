@@ -4,6 +4,7 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import WishListItemReview from "../../components/WishListItemReview/WishListItemReview";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../../constants/Constants";
 
 function Search() {
   const { name } = useParams();
@@ -19,7 +20,7 @@ function Search() {
     setIsLoading(true);
     try {
       const response = await fetch(
-        `https://e-commerce-site-spring-boot-production.up.railway.app/api/products/search/${name}`
+        `${BASE_URL}/products/search/${name}`
       );
       const data = await response.json();
       setProducts(data);

@@ -7,6 +7,7 @@ import Redbutton from "../../components/RedButton/RedButton";
 import { useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { BASE_URL } from "../../constants/Constants";
 
 function CheckOut() {
   const { total, orderId } = useParams();
@@ -24,7 +25,7 @@ function CheckOut() {
   const deleteCartUser = async (userId) => {
     try {
       const response = await fetch(
-        `https://e-commerce-site-spring-boot-production.up.railway.app/carts/user/${userId}`,
+        `${BASE_URL}/carts/user/${userId}`,
         {
           method: "DELETE"
         }
@@ -42,7 +43,7 @@ function CheckOut() {
   const setStatusOrder = async (status) => {
     try {
       const response = await fetch(
-        `https://e-commerce-site-spring-boot-production.up.railway.app/api/orders/${orderId}/${status}`,
+        `${BASE_URL}/orders/${orderId}/${status}`,
         {
           method: "PUT"
         }

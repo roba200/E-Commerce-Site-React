@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import { BASE_URL } from "../../constants/Constants";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ const Profile = () => {
   const fetchUserData = async () => {
     try {
       const response = await fetch(
-        `https://e-commerce-site-spring-boot-production.up.railway.app/api/auth/user/${localStorage.getItem("userId")}`
+        `${BASE_URL}/auth/user/${localStorage.getItem("userId")}`
       );
       const data = await response.json();
       setUserData(data);

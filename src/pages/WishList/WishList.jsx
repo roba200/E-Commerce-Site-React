@@ -7,6 +7,7 @@ import Footer from "../../components/Footer/Footer";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../../constants/Constants";
 
 function WishList() {
   const [wishListItems, setWishListItems] = useState([]);
@@ -41,7 +42,7 @@ function WishList() {
     setIsLoading(true);
     try {
       const response = await fetch(
-        `https://e-commerce-site-spring-boot-production.up.railway.app/api/wishlist/${localStorage.getItem(
+        `${BASE_URL}/wishlist/${localStorage.getItem(
           "userId"
         )}`
       );
@@ -61,7 +62,7 @@ function WishList() {
       const products = [];
       for (const id of productIds) {
         const response = await fetch(
-          `https://e-commerce-site-spring-boot-production.up.railway.app/api/products/${id}`
+          `${BASE_URL}/products/${id}`
         );
         const product = await response.json();
         products.push(product);
@@ -78,7 +79,7 @@ function WishList() {
     setIsUpdating(true);
     try {
       const response = await fetch(
-        `https://e-commerce-site-spring-boot-production.up.railway.app/api/wishlist/remove/${localStorage.getItem(
+        `${BASE_URL}/wishlist/remove/${localStorage.getItem(
           "userId"
         )}/${productId}`,
         { method: "DELETE" }
@@ -97,7 +98,7 @@ function WishList() {
     setIsUpdating(true);
     try {
       const response = await fetch(
-        `https://e-commerce-site-spring-boot-production.up.railway.app/api/carts/add/${localStorage.getItem(
+        `${BASE_URL}/carts/add/${localStorage.getItem(
           "userId"
         )}/${productId}/1`,
         { method: "POST" }

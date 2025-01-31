@@ -4,6 +4,7 @@ import Footer from "../../components/Footer/Footer";
 import { useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { BASE_URL } from "../../constants/Constants";
 
 function ProductDetails() {
   const { id } = useParams();
@@ -18,7 +19,7 @@ function ProductDetails() {
   const fetchProductDetails = async () => {
     try {
       const response = await fetch(
-        `https://e-commerce-site-spring-boot-production.up.railway.app/api/products/${id}`
+        `${BASE_URL}/products/${id}`
       );
       const data = await response.json();
       setProduct(data);
@@ -31,7 +32,7 @@ function ProductDetails() {
   const getCartItemQuantity = async () => {
     try {
       const response = await fetch(
-        `https://e-commerce-site-spring-boot-production.up.railway.app/api/carts/user/${localStorage.getItem(
+        `${BASE_URL}/carts/user/${localStorage.getItem(
           "userId"
         )}`,
         { method: "GET" }
@@ -55,10 +56,10 @@ function ProductDetails() {
 
       const endpoint =
         currentQuantity > 0
-          ? `https://e-commerce-site-spring-boot-production.up.railway.app/api/carts/update/${localStorage.getItem(
+          ? `${BASE_URL}/carts/update/${localStorage.getItem(
               "userId"
             )}/${id}/${newQuantity}`
-          : `https://e-commerce-site-spring-boot-production.up.railway.app/api/carts/add/${localStorage.getItem(
+          : `${BASE_URL}/carts/add/${localStorage.getItem(
               "userId"
             )}/${id}/${newQuantity}`;
 
@@ -91,7 +92,7 @@ function ProductDetails() {
   const addToWishlist = async () => {
     try {
       const response = await fetch(
-        `https://e-commerce-site-spring-boot-production.up.railway.app/api/wishlist/add/${localStorage.getItem(
+        `${BASE_URL}/wishlist/add/${localStorage.getItem(
           "userId"
         )}/${id}`,
         { method: "POST" }

@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import WishListItemReview from "../../components/WishListItemReview/WishListItemReview";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../../constants/Constants";
+
 function Category() {
   const { name } = useParams();
   const [products, setProducts] = useState([]);
@@ -15,7 +17,7 @@ function Category() {
   const fetchProductsByCategory = async () => {
     try {
       const response = await fetch(
-        `https://e-commerce-site-spring-boot-production.up.railway.app/api/products/category/${name}`
+        `${BASE_URL}/products/category/${name}`
       );
       const data = await response.json();
       setProducts(data);
