@@ -4,6 +4,7 @@ import Footer from "../../components/Footer/Footer";
 import Redbutton from "../../components/RedButton/RedButton";
 import "./SignUp.css";
 import axios from "axios";
+import { BASE_URL } from "../../constants/Constants";
 
 function SignUp() {
   const [firstName, setFirstName] = useState("");
@@ -17,7 +18,7 @@ function SignUp() {
     setError("");
 
     try {
-      await axios.post("https://e-commerce-site-spring-boot-production.up.railway.app/api/auth/register", {
+      await axios.post(`${BASE_URL}/auth/register`, {
         firstName: firstName,
         lastName: lastName,
         email: email,

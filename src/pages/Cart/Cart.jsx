@@ -6,6 +6,8 @@ import WhiteButton from "../../components/WhiteButton/WhiteButton";
 import Redbutton from "../../components/RedButton/RedButton";
 import StripeCheckout from "react-stripe-checkout";
 import { useNavigate } from 'react-router-dom';
+import { BASE_URL } from "../../constants/Constants";
+
 
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
@@ -23,7 +25,7 @@ function Cart() {
     setIsLoading(true);
     try {
       const response = await fetch(
-        `https://e-commerce-site-spring-boot-production.up.railway.app/api/carts/user/${localStorage.getItem("userId")}`
+        `${BASE_URL}/carts/user/${localStorage.getItem("userId")}`
       );
       const data = await response.json();
       console.log("Cart data:", data);
@@ -42,7 +44,7 @@ function Cart() {
       const products = [];
       for (const id of productIds) {
         const response = await fetch(
-          `https://e-commerce-site-spring-boot-production.up.railway.app/api/products/${id}`
+          `${BASE_URL}/products/${id}`
         );
         const product = await response.json();
         products.push(product);
@@ -59,7 +61,7 @@ function Cart() {
     setIsUpdating(true);
     try {
       const response = await fetch(
-        `https://e-commerce-site-spring-boot-production.up.railway.app/api/carts/update/${localStorage.getItem(
+        `${BASE_URL}/carts/update/${localStorage.getItem(
           "userId"
         )}/${productId}/${newQuantity}`,
         {
@@ -85,7 +87,7 @@ function Cart() {
   const deleteCartItem = async (productId) => {
     try {
       const response = await fetch(
-        `https://e-commerce-site-spring-boot-production.up.railway.app/api/carts/remove/${localStorage.getItem("userId")}/${productId}`,
+        `${BASE_URL}/carts/remove/${localStorage.getItem("userId")}/${productId}`,
         {
           method: "DELETE",
         }
@@ -110,7 +112,7 @@ function Cart() {
         status: "pending"
       };
 
-      const response = await fetch('https://e-commerce-site-spring-boot-production.up.railway.app/api/orders', {
+      const response = await fetch(`${BASE_URL}/orders`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

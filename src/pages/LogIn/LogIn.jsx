@@ -4,6 +4,7 @@ import Footer from "../../components/Footer/Footer";
 import Redbutton from "../../components/RedButton/RedButton";
 import "./LogIn.css";
 import axios from "axios";
+import { BASE_URL } from "../../constants/Constants";
 
 function LogIn({ setIsLoggedIn }) {
   const [email, setEmail] = useState("");
@@ -15,7 +16,7 @@ function LogIn({ setIsLoggedIn }) {
     setError('');
 
     try {
-        const response = await axios.post('https://e-commerce-site-spring-boot-production.up.railway.app/api/auth/login', {
+        const response = await axios.post(`${BASE_URL}/auth/login`, {
             'email': email,
             'passwordHash': password,
         });

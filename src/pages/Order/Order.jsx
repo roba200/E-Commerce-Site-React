@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import { BASE_URL } from "../../constants/Constants";
 
 function Order() {
   const [orders, setOrders] = useState([]);
-  const API_BASE_URL = "https://e-commerce-site-spring-boot-production.up.railway.app/api";
+  const API_BASE_URL = BASE_URL;
 
   
 
