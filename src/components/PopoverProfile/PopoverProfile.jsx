@@ -14,7 +14,7 @@ const PopoverProfile = () => {
 
     return (
         <Popover className="relative">
-            <PopoverButton className="h-[50px] w-[50px] bg-fuchsia-800 rounded-[100px] flex items-center justify-center">
+            <PopoverButton className="h-[50px] w-[50px] bg-red-600 rounded-[100px] flex items-center justify-center">
                 <UserCircleIcon className="h-8 w-8 text-white" />
             </PopoverButton>
 
