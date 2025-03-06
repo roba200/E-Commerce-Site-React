@@ -22,6 +22,7 @@ import Contact from "./pages/Contact/Contact";
 import About from "./pages/About/About";
 import Category from "./pages/Category/Category";
 import Search from "./pages/Search/Search";
+import OrderDetails from "./pages/Order/OrderDetails"; // Import OrderDetails
 
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem("token");
@@ -97,7 +98,7 @@ function App() {
             }
           />
           <Route
-            path="/checkout/:total/:orderId"
+            path="/checkout/:total"
             element={
               <ProtectedRoute>
                 <CheckOut />
@@ -125,6 +126,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Order />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/order/:id"
+            element={
+              <ProtectedRoute>
+                <OrderDetails />
               </ProtectedRoute>
             }
           />

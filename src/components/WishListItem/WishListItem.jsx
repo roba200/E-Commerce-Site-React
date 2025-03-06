@@ -5,8 +5,8 @@ const WishListItem = ({discount, itemName, nowPrice, wasPrice, image, onDeleteCl
     <div className="inline-block px-3 mb-4">
       <div className="h-[209px] w-[270px] bg-[#F5F5F5] flex items-center justify-center flex-col relative cursor-pointer" onClick={onClick}>
         <div className="w-full flex justify-between px-[13px] items-center absolute top-2">
-          <div className="h-[26px] w-[55px] bg-[#DB4444] text-center text-[12px] flex justify-center items-center text-[#fafafa] rounded-[4px]">
-            {discount}
+          <div>
+           
           </div>
           <button 
             className="bg-white h-[34px] w-[34px] flex justify-center items-center cursor-pointer rounded-full hover:bg-gray-100"
@@ -29,7 +29,7 @@ const WishListItem = ({discount, itemName, nowPrice, wasPrice, image, onDeleteCl
       <div className="pt-4 font-medium">{itemName}</div>
       <div className="flex gap-4 items-center">
         <span className="text-[#DB4444] font-semibold">${nowPrice}</span>
-        <span className="text-[#d9d9d9] line-through">${wasPrice}</span>
+        
       </div>
     </div>
   )

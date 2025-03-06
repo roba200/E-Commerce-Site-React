@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import { BASE_URL } from "../../constants/Constants";
@@ -6,8 +7,7 @@ import { BASE_URL } from "../../constants/Constants";
 function Order() {
   const [orders, setOrders] = useState([]);
   const API_BASE_URL = BASE_URL;
-
-  
+  const navigate = useNavigate(); // Initialize useNavigate
 
   useEffect(() => {
     fetchOrders();
@@ -18,15 +18,16 @@ function Order() {
       const userId = localStorage.getItem("userId");
       const response = await fetch(`${API_BASE_URL}/orders/user/${userId}`);
       const data = await response.json();
-      // If no orders from API, use dummy orders
-      setOrders( data );
+      setOrders(data);
     } catch (error) {
       console.error("Error fetching orders:", error);
-      
     }
   };
 
-  // Calculate total items in order
+  const handleOrderClick = (orderId) => {
+    navigate(`/order/${orderId}`); // Navigate to order details page
+  };
+
   const getTotalItems = (quantities) => {
     return Object.values(quantities).reduce((sum, quantity) => sum + quantity, 0);
   };
@@ -47,7 +48,7 @@ function Order() {
         
         <div className="flex flex-col gap-6">
           {orders.map((order) => (
-            <div key={order.id} className="bg-white rounded-lg p-6 shadow-md">
+            <div key={order.id} className="bg-white rounded-lg p-6 shadow-md cursor-pointer" onClick={() => handleOrderClick(order.id)}>
               <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
                 <div className="space-y-1">
                   <h3 className="font-medium">Order #{order.id}</h3>

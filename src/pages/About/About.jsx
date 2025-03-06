@@ -47,28 +47,28 @@ function About() {
                 <div className="box">
                     <img src="Services.png" alt="" />
                     <b>
-                        10.5k
+                        33k
                     </b>
                     <p>
-                        Sallers active our site
+                        Monthly Product sale
                     </p>
                 </div>
                 <div className="box">
                     <img src="Services.png" alt="" />
                     <b>
-                        10.5k
+                        54.5k
                     </b>
                     <p>
-                        Sallers active our site
+                        Custormer active in our site
                     </p>
                 </div>
                 <div className="box">
                     <img src="Services.png" alt="" />
                     <b>
-                        10.5k
+                        25.5k
                     </b>
                     <p>
-                        Sallers active our site
+                        Anual gross sale in our site
                     </p>
                 </div>
             </div>
@@ -92,8 +92,8 @@ function About() {
                         <img src="/image 51.png" alt="" />
                     </div>
                     <div className="team-details">
-                        <b>Tom Cruise</b>
-                        <p>Founder & Chairman</p>
+                        <b>Emma Watson</b>
+                        <p>Managing Director</p>
                         <div className="social-media">
                             <img src="/Icon-Twitter.png" alt="" />
                             <img src="/icon-instagram.png" alt="" />
@@ -106,8 +106,8 @@ function About() {
                             <img src="/image 47.png" alt="" />
                         </div>
                     <div className="team-details">
-                        <b>Tom Cruise</b>
-                        <p>Founder & Chairman</p>
+                        <b>Will Smith</b>
+                        <p>Product Designer</p>
                         <div className="social-media">
                             <img src="/Icon-Twitter.png" alt="" />
                             <img src="/icon-instagram.png" alt="" />
@@ -115,9 +115,6 @@ function About() {
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="team-navigate">
-                <img src="/Frame 883.png" alt="" />
             </div>
             <div className="features">
                 <div className="feature-container">

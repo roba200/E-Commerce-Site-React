@@ -10,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { BASE_URL } from "../../constants/Constants";
 
 function CheckOut() {
-  const { total, orderId } = useParams();
+  const { total } = useParams();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: "",
@@ -23,9 +23,13 @@ function CheckOut() {
     phone: "",
     postalcode: "",
   });
+  const [paymentCompleted, setPaymentCompleted] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
+  const [productQuantities, setProductQuantities] = useState({});
 
   useEffect(() => {
     fetchUserData();
+    fetchCartItems();
   }, []);
 
   const fetchUserData = async () => {
@@ -46,6 +50,20 @@ function CheckOut() {
       });
     } catch (error) {
       console.error("Error fetching user data:", error);
+    }
+  };
+
+  const fetchCartItems = async () => {
+    try {
+      const userId = localStorage.getItem("userId");
+      const response = await fetch(`${BASE_URL}/carts/user/${userId}`);
+      const data = await response.json();
+      setProductQuantities(data.productQuantities);
+      setCartItems(data.productIds);
+
+      console.log("Cart data:", data.productIds);
+    } catch (error) {
+      console.error("Error fetching cart items:", error);
     }
   };
 
@@ -139,7 +157,7 @@ function CheckOut() {
 
     const orderDetails = {
       merchant_id: "1221874",
-      order_id: orderId,
+      order_id: new Date().getTime().toString(),
       amount: total,
       currency: "LKR",
     };
@@ -173,8 +191,10 @@ function CheckOut() {
     payhere.onCompleted = function onCompleted(orderId) {
       console.log("Payment completed. OrderID:" + orderId);
       paymentCompleteMessage();
-      setStatusOrder("PROCESSING");
+     // setStatusOrder("PROCESSING");
+      createOrder();
       deleteCartUser(localStorage.getItem("userId"));
+      setPaymentCompleted(true);
       navigate("/");
 
       // Note: validate the payment and show success or failure page to the customer
@@ -194,6 +214,31 @@ function CheckOut() {
 
     // Initialize PayHere payment
     payhere.startPayment(payment);
+  };
+
+  const createOrder = async () => {
+    try {
+      const userId = localStorage.getItem("userId");
+      const orderData = {
+        userId,
+        productIds: cartItems,
+        productQuantities,
+        totalPrice: total,
+        orderDate: new Date().toISOString(),
+        status: "PENDING"
+      };
+      const response = await fetch(`${BASE_URL}/orders`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(orderData),
+      });
+      const data = await response.json();
+      console.log("Order created:", data);
+    } catch (error) {
+      console.error("Error creating order:", error);
+    }
   };
 
   return (
