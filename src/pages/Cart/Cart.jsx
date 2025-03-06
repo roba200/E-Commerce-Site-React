@@ -8,7 +8,6 @@ import StripeCheckout from "react-stripe-checkout";
 import { useNavigate } from 'react-router-dom';
 import { BASE_URL } from "../../constants/Constants";
 
-
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const [total, setTotal] = useState(0);
@@ -135,7 +134,14 @@ function Cart() {
   return (
     <>
       <Header />
-      <div className="Roadmap">Home / Cart</div>
+      <div className="Roadmap">
+        <span 
+          className="hover:text-red-600 cursor-pointer"
+          onClick={() => navigate("/")}
+        >
+          Home </span> 
+         / Cart
+      </div>
       <div className="cart-container">
         {isLoading ? (
           <div className="min-h-[400px] flex items-center justify-center">

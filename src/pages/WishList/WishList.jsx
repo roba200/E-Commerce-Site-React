@@ -27,7 +27,7 @@ function WishList() {
   };
 
   const showItemDeleteMessage = () => {
-    toast.info("Product removed from cart!", {
+    toast.info("Product removed from wishlist!", {
       position: "top-right",
     });
   };

@@ -190,19 +190,20 @@ function HomePage() {
           <div className="flex">
             <div className="flex flex-col space-y-4">
               {[
-                "Woman's Fashion",
-                "Men's Fashion",
                 "Electronics",
-                "Home & Lifestyle",
-                "Medicine",
-                "Sports & Outdoor",
-                "Baby's & Toys",
-                "Groceries",
+                "Computers",
+                "Home & Kitchen",
+                "Home Appliances",
+                "Bar & Wine",
+                "Fashion",
+                "Office Furniture",
                 "Health & Beauty",
+                "Sports & Outdoors"
               ].map((item, index) => (
                 <div
                   key={index}
                   className="hover:text-[#DB4444] cursor-pointer transition-colors duration-200 flex items-center space-x-2"
+                  onClick={() => navigate(`/category/${item}`)}
                 >
                   <span>{item}</span>
                 </div>
