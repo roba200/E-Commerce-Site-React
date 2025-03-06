@@ -17,6 +17,8 @@ function HomePage() {
   const [discountedPrices, setDiscountedPrices] = useState({});
   const [regularProducts, setRegularProducts] = useState([]);
   const navigate = useNavigate();
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 12;
 
   useEffect(() => {
     fetchFlashSales();
@@ -114,6 +116,19 @@ function HomePage() {
       showErrorMessage();
     }
   };
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+
+  const handlePreviousPage = () => {
+    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+  };
+
+  const paginatedProducts = regularProducts.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   const categories = [
     {
@@ -355,8 +370,9 @@ function HomePage() {
           </div>
           <h2 className="text-2xl font-bold mt-4 mb-8">Explore Our Products</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {regularProducts.map((product) => (
+            {paginatedProducts.map((product) => (
               <WishListItemReview
+                key={product.id}
                 discount={
                   Math.round(
                     ((product.price - product.discountedPrice) /
@@ -373,6 +389,22 @@ function HomePage() {
                 onClick={() => navigate(`/productdetails/${product.id}`)}
               />
             ))}
+          </div>
+          <div className="flex justify-between mt-8">
+            <button
+              onClick={handlePreviousPage}
+              disabled={currentPage === 1}
+              className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50"
+            >
+              Previous
+            </button>
+            <button
+              onClick={handleNextPage}
+              disabled={currentPage * itemsPerPage >= regularProducts.length}
+              className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50"
+            >
+              Next
+            </button>
           </div>
         </div>
 

@@ -4,6 +4,8 @@ import Header from "../../components/Header/Header";
 import WishListItemReview from "../../components/WishListItemReview/WishListItemReview";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../../constants/Constants";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Category() {
   const { name } = useParams();
@@ -14,11 +16,37 @@ function Category() {
     fetchProductsByCategory();
   }, []);
 
-  const fetchProductsByCategory = async () => {
+  const showCartAddtMessage = () => {
+    toast.success("Product Added to cart!", {
+      position: "top-right",
+    });
+  };
+
+  const showErrorMessage = () => {
+    toast.error("Something went wrong!", {
+      position: "top-right",
+    });
+  };
+
+  const addToCart = async (productId) => {
     try {
       const response = await fetch(
-        `${BASE_URL}/products/category/${name}`
+        `${BASE_URL}/carts/add/${localStorage.getItem(
+          "userId"
+        )}/${productId}/1`,
+        { method: "POST" }
       );
+      showCartAddtMessage();
+      const data = await response.json();
+    } catch (error) {
+      console.error("Error adding to cart items:", error);
+      showErrorMessage();
+    }
+  };
+
+  const fetchProductsByCategory = async () => {
+    try {
+      const response = await fetch(`${BASE_URL}/products/category/${name}`);
       const data = await response.json();
       setProducts(data);
     } catch (error) {
@@ -65,6 +93,7 @@ function Category() {
             ))}
           </div>
         </div>
+        <ToastContainer />
       </div>
     </>
   );

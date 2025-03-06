@@ -1,36 +1,59 @@
-import React, { useState } from "react";
-import CryptoJS from 'crypto-js';
+import React, { useState, useEffect } from "react";
+import CryptoJS from "crypto-js";
 import "./CheckOut.css";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Redbutton from "../../components/RedButton/RedButton";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BASE_URL } from "../../constants/Constants";
 
 function CheckOut() {
   const { total, orderId } = useParams();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    streetAddress: '',
-    apartment: '',
-    city: '',
-    country: '',
-    phone: ''
+    firstName: "",
+    lastName: "",
+    email: "",
+    streetAddress: "",
+    state: "",
+    city: "",
+    country: "",
+    phone: "",
+    postalcode: "",
   });
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
+
+  const fetchUserData = async () => {
+    try {
+      const userId = localStorage.getItem("userId");
+      const response = await fetch(`${BASE_URL}/auth/user/${userId}`);
+      const data = await response.json();
+      setFormData({
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        streetAddress: data.address.street,
+        state: data.address.state,
+        city: data.address.city,
+        country: data.address.country,
+        phone: data.phone,
+        postalcode: data.address.postalCode,
+      });
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  };
 
   const deleteCartUser = async (userId) => {
     try {
-      const response = await fetch(
-        `${BASE_URL}/carts/user/${userId}`,
-        {
-          method: "DELETE"
-        }
-        
-      );
+      const response = await fetch(`${BASE_URL}/carts/user/${userId}`, {
+        method: "DELETE",
+      });
       const data = await response;
       console.log("Cart Deleted", data);
     } catch (error) {
@@ -38,17 +61,11 @@ function CheckOut() {
     }
   };
 
-
-
   const setStatusOrder = async (status) => {
     try {
-      const response = await fetch(
-        `${BASE_URL}/orders/${orderId}/${status}`,
-        {
-          method: "PUT"
-        }
-        
-      );
+      const response = await fetch(`${BASE_URL}/orders/${orderId}/${status}`, {
+        method: "PUT",
+      });
       const data = await response;
       console.log("Order status updated:", data);
     } catch (error) {
@@ -58,9 +75,9 @@ function CheckOut() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
+    setFormData((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -83,25 +100,48 @@ function CheckOut() {
   };
 
   const generateHash = (orderDetails) => {
-    const merchantSecret = 'MTk5NDI0MDY0OTI5NDk4Njk4ODk0MjMwNzQwNjA4NzE4MDc5MDU=';
+    const merchantSecret =
+      "MTk5NDI0MDY0OTI5NDk4Njk4ODk0MjMwNzQwNjA4NzE4MDc5MDU=";
     const formattedAmount = Number(orderDetails.amount).toFixed(2);
     const md5Secret = CryptoJS.MD5(merchantSecret).toString().toUpperCase();
-    
-    const message = orderDetails.merchant_id + 
-                   orderDetails.order_id + 
-                   formattedAmount + 
-                   orderDetails.currency + 
-                   md5Secret;
-                   
+
+    const message =
+      orderDetails.merchant_id +
+      orderDetails.order_id +
+      formattedAmount +
+      orderDetails.currency +
+      md5Secret;
+
     return CryptoJS.MD5(message).toString().toUpperCase();
   };
 
   const handlePayment = async () => {
+    const requiredFields = [
+      "firstName",
+      "lastName",
+      "email",
+      "streetAddress",
+      "state",
+      "city",
+      "country",
+      "phone",
+      "postalcode",
+    ];
+
+    for (const field of requiredFields) {
+      if (!formData[field]) {
+        toast.error("All fields are required!", {
+          position: "top-right",
+        });
+        return;
+      }
+    }
+
     const orderDetails = {
       merchant_id: "1221874",
       order_id: orderId,
       amount: total,
-      currency: "LKR"
+      currency: "LKR",
     };
 
     const payment = {
@@ -111,7 +151,7 @@ function CheckOut() {
       cancel_url: "http://sample.com/cancel",
       notify_url: "http://sample.com/notify",
       order_id: orderDetails.order_id,
-      items: "Door bell wireles",
+      items: orderDetails.order_id,
       amount: orderDetails.amount,
       currency: orderDetails.currency,
       hash: generateHash(orderDetails),
@@ -119,10 +159,10 @@ function CheckOut() {
       last_name: formData.lastName,
       email: formData.email,
       phone: formData.phone,
-      address: formData.streetAddress + ' ' + formData.apartment,
+      address: formData.streetAddress + " " + formData.apartment,
       city: formData.city,
       country: formData.country,
-      delivery_address: formData.streetAddress + ' ' + formData.apartment,
+      delivery_address: formData.streetAddress + " " + formData.apartment,
       delivery_city: formData.city,
       delivery_country: formData.country,
       custom_1: "",
@@ -135,6 +175,7 @@ function CheckOut() {
       paymentCompleteMessage();
       setStatusOrder("COMPLETED");
       deleteCartUser(localStorage.getItem("userId"));
+      navigate("/");
 
       // Note: validate the payment and show success or failure page to the customer
     };
@@ -184,34 +225,86 @@ function CheckOut() {
       <div className="wrapper">
         <div className="billing-form">
           <span>First Name</span>
-          <input type="text" name="firstName" id="Fname" required 
-            value={formData.firstName} onChange={handleInputChange} />
+          <input
+            type="text"
+            name="firstName"
+            id="Fname"
+            required
+            value={formData.firstName}
+            onChange={handleInputChange}
+          />
           <span>Last Name</span>
-          <input type="text" name="lastName" id="cname" 
-            value={formData.lastName} onChange={handleInputChange} />
+          <input
+            type="text"
+            name="lastName"
+            id="cname"
+            required
+            value={formData.lastName}
+            onChange={handleInputChange}
+          />
           <span>Email</span>
-          <input type="email" name="email" id="email" 
-            value={formData.email} onChange={handleInputChange} />
+          <input
+            type="email"
+            name="email"
+            id="email"
+            required
+            value={formData.email}
+            onChange={handleInputChange}
+          />
           <span>Street Address</span>
-          <input type="text" name="streetAddress" id="saddress" required 
-            value={formData.streetAddress} onChange={handleInputChange} />
-          <span>Apartment,floor,etc.(optional)</span>
-          <input type="text" name="apartment" id="optional" 
-            value={formData.apartment} onChange={handleInputChange} />
+          <input
+            type="text"
+            name="streetAddress"
+            id="saddress"
+            required
+            value={formData.streetAddress}
+            onChange={handleInputChange}
+          />
           <span>Town/City</span>
-          <input type="text" name="city" id="town" required 
-            value={formData.city} onChange={handleInputChange} />
+          <input
+            type="text"
+            name="city"
+            id="town"
+            required
+            value={formData.city}
+            onChange={handleInputChange}
+          />
+          <span>State</span>
+          <input
+            type="text"
+            name="state"
+            id="tstate"
+            required
+            value={formData.state}
+            onChange={handleInputChange}
+          />
           <span>Country</span>
-          <input type="text" name="country" id="tcountryown" required 
-            value={formData.country} onChange={handleInputChange} />
+          <input
+            type="text"
+            name="country"
+            id="tcountryown"
+            required
+            value={formData.country}
+            onChange={handleInputChange}
+          />
+          <span>Postal Code</span>
+          <input
+            type="text"
+            name="postalcode"
+            id="postalcode"
+            required
+            value={formData.postalcode}
+            onChange={handleInputChange}
+          />
           <span>Phone Number</span>
-          <input type="text" name="phone" id="pn" required 
-            value={formData.phone} onChange={handleInputChange} />
-
-          <div className="li-wrapper">
-            <input type="checkbox" />
-            <div>Save this information for faster check-out next time</div>
-          </div>
+          <input
+            type="text"
+            name="phone"
+            id="pn"
+            required
+            value={formData.phone}
+            onChange={handleInputChange}
+          />
         </div>
         <div className="payment">
           <hr />
@@ -219,32 +312,7 @@ function CheckOut() {
             Total:
             <div className="payment-itemtotalprice">${total}</div>
           </div>
-          <div className="payment-method">
-            <div>
-              <input type="radio" name="paymentuser" value="bank" />
-            </div>
-            <div className="payment-methodname">Bank</div>
-            <div className="payment-card">
-              <img src="./Bkash.png" alt="" />
-              <img src="./Visa.png" alt="" />
-              <img src="./Mastercard.png" alt="" />
-              <img src="./Nagad.png" alt="" />
-            </div>
-          </div>
-          <div className="payment-cash">
-            <div>
-              <input type="radio" name="paymentuser" value="cash" />
-            </div>
-            <div className="payment-cn">Cash on delivery</div>
-          </div>
-          <div className="code">
-            <div className="coupon-code">
-              <input type="text" name="ccon" placeholder="Coupon Code" />
-            </div>
-            <div className="apply-code">
-              <input type="submit" name="acon" value="Apply Coupon" />
-            </div>
-          </div>
+
           <div className="place-order">
             <Redbutton
               text="Place Order"
