@@ -4,7 +4,6 @@ import Footer from "../../components/Footer/Footer";
 import "./Cart.css";
 import WhiteButton from "../../components/WhiteButton/WhiteButton";
 import Redbutton from "../../components/RedButton/RedButton";
-import StripeCheckout from "react-stripe-checkout";
 import { useNavigate } from 'react-router-dom';
 import { BASE_URL } from "../../constants/Constants";
 
@@ -100,35 +99,8 @@ function Cart() {
     }
   };
 
-  const handleCheckout = async () => {
-    try {
-      const orderData = {
-        userId: localStorage.getItem("userId"),
-        productIds: cartItems.map(item => item.id),
-        productQuantities: productQuantities,
-        totalPrice: total,
-        orderDate: new Date().toISOString(),
-        status: "pending"
-      };
-
-      const response = await fetch(`${BASE_URL}/orders`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(orderData)
-      });
-
-      if (response.ok) {
-        const responseText = await response.text();
-        console.log('Order created successfully:', responseText);
-        navigate(`/checkout/${total}/${responseText}`);
-      } else {
-        console.error('Failed to create order');
-      }
-    } catch (error) {
-      console.error('Error creating order:', error);
-    }
+  const handleCheckout = () => {
+    navigate(`/checkout/${total}`);
   };
 
   return (
@@ -178,7 +150,7 @@ function Cart() {
                   />
                   {item.name}
                 </div>
-                <div className="price">${item.price}</div>
+                <div className="price">${item.discountedPrice ?? item.price}</div>
                 <div className="quantity">
                   <input
                     type="number"
@@ -190,7 +162,7 @@ function Cart() {
                   />
                 </div>
                 <div className="subtotal">
-                  ${item.price * productQuantities[item.id]}
+                  ${(item.discountedPrice ?? item.price) * productQuantities[item.id]}
                   <button 
                     className="delete-button"
                     onClick={() => deleteCartItem(item.id)}

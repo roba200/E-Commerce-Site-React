@@ -141,7 +141,7 @@ function WishList() {
                       key={item.id}
                       discount="-29%"
                       itemName={item.name}
-                      nowPrice={item.price}
+                      nowPrice={item.discountedPrice ?? item.price}
                       wasPrice={item.price}
                       image={item.imageUrl1}
                       onDeleteClick={() =>

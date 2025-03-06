@@ -23,10 +23,10 @@ function Footer() {
           <ul className="footer-ul">
             <li className="footer-title">Support</li>
             <li className="footer-subtitle">
-              111 Bijoy sarani, Dhaka, DH 1515, Bangladesh.
+              No.453/A Bulugha junction,Kelaniya,western,Sri lanka.
             </li>
             <li className="footer-subtitle">exclusive@gmail.com</li>
-            <li className="footer-subtitle">+88015-88888-9999</li>
+            <li className="footer-subtitle">+9471 123 4567</li>
           </ul>
         </div>
 
