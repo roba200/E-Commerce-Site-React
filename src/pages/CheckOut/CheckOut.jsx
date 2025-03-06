@@ -173,7 +173,7 @@ function CheckOut() {
     payhere.onCompleted = function onCompleted(orderId) {
       console.log("Payment completed. OrderID:" + orderId);
       paymentCompleteMessage();
-      setStatusOrder("COMPLETED");
+      setStatusOrder("PROCESSING");
       deleteCartUser(localStorage.getItem("userId"));
       navigate("/");
 

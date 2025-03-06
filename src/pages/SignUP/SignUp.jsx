@@ -5,8 +5,10 @@ import Redbutton from "../../components/RedButton/RedButton";
 import "./SignUp.css";
 import axios from "axios";
 import { BASE_URL } from "../../constants/Constants";
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
+  const navigate = useNavigate();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -80,7 +82,7 @@ function SignUp() {
                 <br />
                 <div className="have-account-warpper">
                   <div className="have-account">Already have account?</div>
-                  <div className="login">Login</div>
+                  <div className="login" onClick={() => navigate('/')}>Login</div>
                 </div>
               </div>
             </div>

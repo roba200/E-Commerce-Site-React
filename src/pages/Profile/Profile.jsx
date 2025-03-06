@@ -130,9 +130,7 @@ const Profile = () => {
                 >
                   Edit Profile
                 </button>
-                <button className="px-6 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition-colors">
-                  Change Password
-                </button>
+                
               </div>
             </div>
           </div>

@@ -61,7 +61,7 @@ function LogIn({ setIsLoggedIn }) {
                 <div className="login-button">
                   <Redbutton text="Log In" />
                 </div>
-                <div className="forgot-password">Forgot Password?</div>
+               
               </div>
             </div>
           </form>
